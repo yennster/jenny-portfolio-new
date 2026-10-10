@@ -681,26 +681,121 @@
   });
 
   // ------------------------------------------------------------------------
+  // Sortable list views (Writing + Talks)
+  //   Default view: grouped by folder/year, in the order written in the HTML.
+  //   Picking a sort (column header or the "Sort by" menu) shows one flat list
+  //   sorted across every group; the folder/year filter still applies.
+  // ------------------------------------------------------------------------
+  function listView(table, { groupKey, select, onChange }) {
+    const homes = $$('tbody', table);
+    const original = new Map();
+    const rows = [];
+    homes.forEach(tb => {
+      const own = [...tb.rows].filter(r => !r.classList.contains('group-row'));
+      own.forEach(r => {
+        r.dataset.group = tb.dataset[groupKey];
+        r.dataset.groupLabel = tb.dataset.label || tb.dataset[groupKey];
+      });
+      original.set(tb, own);
+      rows.push(...own);
+    });
+    const flat = document.createElement('tbody');
+    flat.hidden = true;
+    table.append(flat);
+
+    const ths = $$('thead th', table);
+    let filter = 'all';
+    let sort = null; // { col, dir } or null for the grouped default
+
+    ths.forEach((th, col) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.className = 'sort-btn';
+      btn.innerHTML = '<span></span><span class="sort-ind" aria-hidden="true"></span>';
+      btn.firstChild.textContent = th.textContent;
+      th.textContent = '';
+      th.append(btn);
+      btn.addEventListener('click', () => {
+        const isDate = th.dataset.type === 'date';
+        const current = sort && sort.col === col ? sort.dir : null;
+        const first = isDate ? 'descending' : 'ascending';
+        const dir = current ? (current === 'ascending' ? 'descending' : 'ascending') : first;
+        setSort({ col, dir });
+      });
+    });
+
+    const key = row => {
+      const cell = row.cells[sort.col];
+      // Ignore leading quotes/punctuation so '"AI at the Edge"…' files under A
+      return (cell.dataset.sort ?? cell.textContent).trim().toLowerCase().replace(/^[^\p{L}\p{N}]+/u, '');
+    };
+
+    function apply() {
+      if (!sort) {
+        homes.forEach(tb => {
+          original.get(tb).forEach(r => { r.hidden = false; tb.append(r); });
+          tb.hidden = !(filter === 'all' || tb.dataset[groupKey] === filter);
+        });
+        flat.hidden = true;
+      } else {
+        const mul = sort.dir === 'ascending' ? 1 : -1;
+        const sorted = [...rows].sort((a, b) => {
+          const ka = key(a);
+          const kb = key(b);
+          if (!ka !== !kb) return ka ? -1 : 1; // blanks (unknown dates) always last
+          return ka.localeCompare(kb, undefined, { numeric: true }) * mul;
+        });
+        sorted.forEach(r => {
+          r.hidden = !(filter === 'all' || r.dataset.group === filter);
+          flat.append(r);
+        });
+        homes.forEach(tb => { tb.hidden = true; });
+        flat.hidden = false;
+      }
+      ths.forEach((th, i) => {
+        if (sort && i === sort.col) th.setAttribute('aria-sort', sort.dir);
+        else th.removeAttribute('aria-sort');
+      });
+      if (select) select.value = sort ? `${sort.col}:${sort.dir}` : 'group';
+      onChange(visibleRows());
+    }
+
+    function visibleRows() {
+      return $$('tbody:not([hidden]) > tr:not(.group-row):not([hidden])', table);
+    }
+    function setSort(next) { sort = next; apply(); }
+
+    if (select) {
+      select.addEventListener('change', () => {
+        const [col, dir] = select.value.split(':');
+        setSort(select.value === 'group' ? null : { col: +col, dir });
+      });
+    }
+    return {
+      setFilter(f) { filter = f; apply(); },
+      visibleRows,
+    };
+  }
+
+  // ------------------------------------------------------------------------
   // App: Writing (Explorer)
   // ------------------------------------------------------------------------
   (function explorer() {
     const win = $('#writing');
-    const groups = $$('#writingTable tbody', win);
     const buttons = $$('.tree [data-folder]', win);
     const path = $('[data-path]', win);
     const status = $('[data-status]', win);
+    const view = listView($('#writingTable'), {
+      groupKey: 'folder',
+      select: $('#writingSort'),
+      onChange: rows => { status.textContent = `${rows.length} object(s)`; },
+    });
     function show(folder) {
-      let count = 0;
-      let label = '';
-      groups.forEach(g => {
-        const on = folder === 'all' || g.dataset.folder === folder;
-        g.hidden = !on;
-        if (on) count += g.rows.length - 1;
-        if (g.dataset.folder === folder) label = g.dataset.label;
-      });
-      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.folder === folder)));
+      const btn = buttons.find(b => b.dataset.folder === folder);
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+      const label = folder === 'all' ? '' : $('span', btn).textContent;
       path.textContent = `C:\\My Documents\\Writing${label ? `\\${label}` : ''}`;
-      status.textContent = `${count} object(s)`;
+      view.setFilter(folder);
     }
     buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.folder)));
     $('[data-folder-up]', win).addEventListener('click', () => show('all'));
@@ -711,14 +806,12 @@
   // ------------------------------------------------------------------------
   (function mediaPlayer() {
     const win = $('#talks');
-    const groups = $$('#talksTable tbody', win);
     const buttons = $$('.tree [data-year]', win);
     const status = $('[data-status]', win);
     const npTitle = $('#npTitle');
     const npMeta = $('#npMeta');
     let current = null;
-
-    const visibleRows = () => groups.filter(g => !g.hidden).flatMap(g => [...g.rows].filter(r => !r.classList.contains('group-row')));
+    let year = 'all';
 
     function nowPlaying(row) {
       if (!row) return;
@@ -730,32 +823,40 @@
       npMeta.textContent = `${cells[1].textContent} · ${cells[3].textContent} · ${cells[2].textContent}`;
     }
 
-    function show(year) {
-      groups.forEach(g => { g.hidden = !(year === 'all' || g.dataset.year === year); });
-      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.year === year)));
-      const rows = visibleRows();
-      status.textContent = `${rows.length} item${rows.length === 1 ? '' : 's'}${year === 'all' ? ' · 2020–2025' : ` · ${year}`}`;
-      nowPlaying(rows[0]);
+    const view = listView($('#talksTable'), {
+      groupKey: 'year',
+      select: $('#talksSort'),
+      onChange: rows => {
+        status.textContent = `${rows.length} item${rows.length === 1 ? '' : 's'}${year === 'all' ? ' · 2020–2025' : ` · ${year}`}`;
+        if (!current || !rows.includes(current)) nowPlaying(rows[0]);
+      },
+    });
+
+    function show(y) {
+      year = y;
+      buttons.forEach(b => b.setAttribute('aria-pressed', String(b.dataset.year === y)));
+      view.setFilter(y);
+      nowPlaying(view.visibleRows()[0]);
     }
 
     buttons.forEach(b => b.addEventListener('click', () => show(b.dataset.year)));
     $('#talksTable').addEventListener('click', e => {
-      const row = e.target.closest('tr');
+      const row = e.target.closest('tbody tr');
       if (row && !row.classList.contains('group-row')) nowPlaying(row);
     });
     $('#talksTable').addEventListener('focusin', e => {
-      const row = e.target.closest('tr');
-      if (row) nowPlaying(row);
+      const row = e.target.closest('tbody tr');
+      if (row && !row.classList.contains('group-row')) nowPlaying(row);
     });
     $('#player').addEventListener('click', e => {
       const b = e.target.closest('[data-player]');
       if (!b) return;
-      const rows = visibleRows();
+      const rows = view.visibleRows();
       const i = rows.indexOf(current);
       if (b.dataset.player === 'play' && current) window.open($('a', current).href, '_blank', 'noopener');
       else if (b.dataset.player === 'next') nowPlaying(rows[(i + 1) % rows.length]);
       else if (b.dataset.player === 'prev') nowPlaying(rows[(i - 1 + rows.length) % rows.length]);
-      if (b.dataset.player !== 'play') current.scrollIntoView({ block: 'nearest' });
+      if (b.dataset.player !== 'play' && current) current.scrollIntoView({ block: 'nearest' });
     });
     show('all');
   })();
@@ -781,14 +882,14 @@
   function buildIndex() {
     const items = [];
     const add = (name, extra) => items.push({ name, hay: `${name} ${extra.folder} ${extra.type}`.toLowerCase(), ...extra });
-    $$('#writingTable tbody').forEach(g => [...g.rows].forEach(r => {
+    $$('#writingTable tbody tr[data-group]').forEach(r => {
       const a = $('a', r);
-      if (a) add(a.textContent, { href: a.href, folder: `Writing\\${g.dataset.label}`, type: r.cells[1].textContent, scope: 'writing', icon: $('use', r).getAttribute('href') });
-    }));
-    $$('#talksTable tbody').forEach(g => [...g.rows].forEach(r => {
+      add(a.textContent, { href: a.href, folder: `Writing\\${r.dataset.groupLabel}`, type: r.cells[1].textContent, scope: 'writing', icon: $('use', r).getAttribute('href') });
+    });
+    $$('#talksTable tbody tr[data-group]').forEach(r => {
       const a = $('a', r);
-      if (a) add(a.textContent, { href: a.href, folder: `Talks\\${g.dataset.year}`, type: `${r.cells[2].textContent} · ${r.cells[1].textContent}`, scope: 'talks', icon: '#i-media' });
-    }));
+      add(a.textContent, { href: a.href, folder: `Talks\\${r.dataset.groupLabel}`, type: `${r.cells[2].textContent} · ${r.cells[1].textContent}`, scope: 'talks', icon: '#i-media' });
+    });
     $$('#apps .app-list li').forEach(li => {
       const a = $('a', li);
       add(a.textContent, { href: a.href, folder: 'Internet\\jennyspeelman.dev', type: $('p', li).textContent, scope: 'all', icon: $('use', li).getAttribute('href') });
@@ -1026,7 +1127,7 @@
       const skip = $('#bootSkip');
       const talkCount = $$('#talksTable tbody tr:not(.group-row)').length;
       const lines = [
-        '<span class="bios-logo"><svg viewBox="0 0 32 32"><use href="#i-chip"/></svg>EDGE STAR<br>ALLY</span><span class="hl">PinkBIOS v4.20, An Edge-Efficient Ally</span>',
+        '<span class="bios-logo"><svg viewBox="0 0 32 32"><use href="#i-chip"/></svg>EDGE AI<br>READY</span><span class="hl">PinkBIOS v4.20, Edge AI Edition</span>',
         'Copyright (C) 1998-2026, Jenny Speelman',
         '',
         'Main Processor : Staff Engineer, Developer Relations',
