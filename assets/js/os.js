@@ -609,6 +609,8 @@
 
   function setPlain(on) {
     store.set('j98.plain', on ? 1 : 0);
+    // Leaving plain view: drop a #plainview hash, or the reload would switch straight back
+    if (!on && location.hash === '#plainview') history.replaceState(null, '', location.pathname + location.search);
     location.reload();
   }
 
@@ -1188,7 +1190,8 @@
 
   addEventListener('hashchange', () => {
     const id = location.hash.slice(1);
-    if (winEl(id)) openWin(id);
+    if (id === 'plainview') setPlain(true);
+    else if (winEl(id)) openWin(id);
   });
 
   boot().then(booted => {

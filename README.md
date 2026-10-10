@@ -12,7 +12,7 @@ My portfolio, dressed up as a pink Windows 98 desktop with a MySpace-style profi
 - **Desktop:** double-click icons to open draggable, resizable windows. There's a taskbar, a Start menu, a clock, Find, Run, and Display Properties (wallpaper colors, patterns, sparkles).
 - **Apps:** the profile (with my Top 8), `resume.txt` in Notepad (printable), Writing in Explorer, Talks in Media Player, *AI at the Edge* in a reader, my AI apps in a retro browser, and Mail.
 - **Kitsch:** BIOS boot screen (first visit only, any key skips), an original Web Audio startup chime, sparkle cursor, glitter text, marquee, 88×31 badges, and a very honest hit counter.
-- **Accessible by default:** every bit of content is real HTML, so the site works without JavaScript and in a **plain view** (Start › Plain view). Phones get a one-window-at-a-time layout, and reduced-motion settings stop all animation.
+- **Accessible by default:** every bit of content is real HTML, so the site works without JavaScript and in a **plain view** (Start › Plain view, or link straight to [`/#plainview`](https://jennyspeelman.me/#plainview)). Phones get a one-window-at-a-time layout, and reduced-motion settings stop all animation.
 
 Plain HTML, CSS, and JavaScript with no build step:
 

@@ -42,6 +42,7 @@
         if (s.desktop) d.style.setProperty('--desktop', s.desktop);
         if (s.label) d.style.setProperty('--icon-label', s.label);
         if (s.pattern) d.setAttribute('data-pattern', s.pattern);
+        if (location.hash === '#plainview') localStorage.setItem('j98.plain', '1');
         if (localStorage.getItem('j98.plain') === '1') d.classList.add('plain');
         var forced = /[?&]boot\b/.test(location.search);
         var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -51,8 +52,8 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="assets/css/os.css?v=3" />
-  <link rel="stylesheet" href="assets/css/apps.css?v=3" />
+  <link rel="stylesheet" href="assets/css/os.css?v=4" />
+  <link rel="stylesheet" href="assets/css/apps.css?v=4" />
 
   <!-- Structured data: ProfilePage + Person + Book + ScholarlyArticle -->
   <script type="application/ld+json">
@@ -124,7 +125,7 @@
     plausible.init({ hashBasedRouting: true })
   </script>
 
-  <script src="assets/js/os.js?v=3" defer></script>
+  <script src="assets/js/os.js?v=4" defer></script>
 </head>
 <body>
 
@@ -188,7 +189,8 @@
 <a class="skip-link" href="#profile">Skip to Jenny's profile</a>
 
 <div class="plain-banner" role="region" aria-label="View mode">
-  <span>You're in plain view — same content, no windows.</span>
+  <span>You're in plain view: same content, no windows.</span>
+  <a class="btn" href="#help" data-open="help"><svg class="ico ico-16" aria-hidden="true"><use href="#i-help"/></svg>Help</a>
   <button class="btn" type="button" data-action="desktop-mode">Back to the Jenny 98 desktop</button>
 </div>
 
@@ -992,14 +994,17 @@ B.S. Electrical & Computer Engineering · 2013 – 2018
           <h3>Welcome to Jenny 98</h3>
           <p>This is the portfolio of Jenny Speelman, Staff Engineer in Developer Relations at Edge Impulse / Qualcomm, dressed up as a late-90s desktop.</p>
           <h4>Getting around</h4>
-          <ul>
+          <p class="plain-only">You're in plain view, so everything is on this one page. Use the icons at the top to jump to a section<span class="js-only">, or <button class="btn" type="button" data-action="desktop-mode">go back to the Jenny 98 desktop</button></span>.</p>
+          <ul class="desktop-only">
             <li>Double-click a desktop icon (or tap it on a phone) to open it.</li>
             <li>Drag windows by their title bar. Resize from the bottom-right corner.</li>
             <li>Use the <b>Start</b> menu for everything, including Find, Run, and Display Properties.</li>
             <li>Keyboard: <kbd>Tab</kbd> moves between things, <kbd>Enter</kbd> opens, <kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd> opens Find, <kbd>Esc</kbd> closes menus and dialogs.</li>
           </ul>
-          <h4>Prefer something calmer?</h4>
-          <p><button class="btn js-only" type="button" data-action="plain-mode">Switch to plain view</button> shows all the same content as a normal scrolling page. Sparkles and sounds can be turned off in <a href="#settings" data-open="settings">Display Properties</a>, and all animation stops if your system asks for reduced motion.</p>
+          <div class="desktop-only">
+            <h4>Prefer something calmer?</h4>
+            <p><button class="btn js-only" type="button" data-action="plain-mode">Switch to plain view</button> shows all the same content as a normal scrolling page. You can also bookmark <a href="#plainview">jennyspeelman.me/#plainview</a> to go straight there. Sparkles and sounds can be turned off in <a href="#settings" data-open="settings">Display Properties</a>, and all animation stops if your system asks for reduced motion.</p>
+          </div>
           <h4>About</h4>
           <p>Built by Jenny Speelman with plain HTML, CSS, and JavaScript. All icons, artwork, and the startup chime are original. Windows® and MySpace® are trademarks of their respective owners. This site is an affectionate homage and isn't affiliated with either.</p>
         </div>

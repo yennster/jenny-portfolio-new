@@ -423,6 +423,11 @@ html:not(.js) #settings, html.plain #settings,
 html:not(.js) #find, html.plain #find { display: none !important; }
 html:not(.js) .tab-panel[hidden], html.plain .tab-panel[hidden] { display: block; margin-top: 8px; }
 .plain-banner { display: none; }
+.plain-only { display: none; }
+html.plain .plain-only, html:not(.js) .plain-only { display: block; }
+html.plain .desktop-only, html:not(.js) .desktop-only { display: none; }
+/* keep section titles clear of the sticky banner when jumping to them */
+html.plain .window { scroll-margin-top: 52px; }
 html.plain .plain-banner {
   display: flex; gap: 10px; align-items: center; justify-content: center; flex-wrap: wrap;
   position: sticky; top: 0; z-index: 10; background: var(--face); box-shadow: var(--raised); padding: 6px 10px;
