@@ -94,13 +94,26 @@
       bus.connect(delay);
       delay.connect(master);
       master.connect(audio.destination);
+      // First gesture of the visit "logs on": play the startup chime once per session
+      // (during the boot screen, the boot's own ending plays it instead)
+      if (!chimedThisSession() && !html.classList.contains('booting')) chime();
     }
     if (audio.state === 'suspended') audio.resume();
   }
   addEventListener('pointerdown', unlockAudio, { passive: true });
   addEventListener('keydown', unlockAudio);
 
-  const canPlay = () => settings.sound && audio && audio.state === 'running';
+  // Run a sound once audio is unlocked; the very first gesture may still be resuming the context
+  function play(fn) {
+    if (!settings.sound || !audio) return;
+    if (audio.state === 'running') fn();
+    else audio.resume().then(() => { if (audio.state === 'running') fn(); }, () => {});
+  }
+
+  let lastChime = -Infinity;
+  function chimedThisSession() {
+    try { return sessionStorage.getItem('j98.chimed') === '1'; } catch (_) { return true; }
+  }
 
   function tone(freq, at, dur, type = 'sine', peak = 0.1, attack = 0.02) {
     const osc = audio.createOscillator();
@@ -117,22 +130,28 @@
 
   // The "Jenny 98" startup chime: an original rising A♭maj9 arpeggio over a soft pad.
   function chime() {
-    if (!canPlay()) return;
-    const t = audio.currentTime + 0.05;
-    tone(103.83, t, 3.4, 'triangle', 0.05, 0.5);
-    tone(207.65, t, 3.2, 'triangle', 0.04, 0.6);
-    tone(311.13, t + 0.1, 3.0, 'sine', 0.05, 0.6);
-    [415.3, 523.25, 622.25, 783.99, 932.33].forEach((f, i) => tone(f, t + i * 0.17, 1.8, 'sine', 0.08, 0.015));
-    tone(1046.5, t + 0.95, 2.3, 'triangle', 0.035, 0.05);
-    tone(1244.51, t + 1.05, 2.2, 'sine', 0.03, 0.05);
-    tone(1567.98, t + 1.15, 2.0, 'sine', 0.02, 0.05);
+    play(() => {
+      lastChime = performance.now();
+      try { sessionStorage.setItem('j98.chimed', '1'); } catch (_) { /* ignore */ }
+      const t = audio.currentTime + 0.05;
+      tone(103.83, t, 3.4, 'triangle', 0.05, 0.5);
+      tone(207.65, t, 3.2, 'triangle', 0.04, 0.6);
+      tone(311.13, t + 0.1, 3.0, 'sine', 0.05, 0.6);
+      [415.3, 523.25, 622.25, 783.99, 932.33].forEach((f, i) => tone(f, t + i * 0.17, 1.8, 'sine', 0.08, 0.015));
+      tone(1046.5, t + 0.95, 2.3, 'triangle', 0.035, 0.05);
+      tone(1244.51, t + 1.05, 2.2, 'sine', 0.03, 0.05);
+      tone(1567.98, t + 1.15, 2.0, 'sine', 0.02, 0.05);
+    });
   }
 
-  function ding() {
-    if (!canPlay()) return;
-    const t = audio.currentTime;
-    tone(1318.5, t, 0.45, 'sine', 0.07);
-    tone(1975.5, t + 0.05, 0.4, 'sine', 0.035);
+  // The one "ding"; `level` only scales its volume (softer for everyday clicks than for dialogs)
+  function ding(level = 1) {
+    play(() => {
+      if (performance.now() - lastChime < 1800) return; // let the startup chime ring out
+      const t = audio.currentTime;
+      tone(1318.5, t, 0.45, 'sine', 0.07 * level);
+      tone(1975.5, t + 0.05, 0.4, 'sine', 0.035 * level);
+    });
   }
 
   // ------------------------------------------------------------------------
@@ -249,6 +268,7 @@
       st.task = makeTask(id, el);
       open.set(id, st);
       if (window.plausible && opts.track !== false) window.plausible('pageview', { u: `${location.origin}${location.pathname}#${id}` });
+      if (!opts.silent) ding(0.45);
     }
     st.minimized = false;
     el.hidden = false;
@@ -498,6 +518,7 @@
   function openStart() {
     startMenu.hidden = false;
     startBtn.setAttribute('aria-expanded', 'true');
+    ding(0.3);
     $('.menu-item', startMenu).focus();
   }
   function closeStart(returnFocus = false) {
@@ -632,6 +653,8 @@
   }
 
   function shutDown() {
+    lastChime = -Infinity;
+    chime();
     const screen = $('#shutdown');
     desktop.style.visibility = 'hidden';
     $('#taskbar').style.visibility = 'hidden';
@@ -1196,7 +1219,7 @@
 
   boot().then(booted => {
     const id = location.hash.slice(1);
-    openWin(winEl(id) ? id : 'profile', { focus: booted, track: false });
+    openWin(winEl(id) ? id : 'profile', { focus: booted, track: false, silent: true });
     if (booted) chime();
   });
 })();

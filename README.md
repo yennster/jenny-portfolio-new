@@ -22,9 +22,12 @@ assets/css/os.css   window chrome, desktop, taskbar, Start menu, boot screen
 assets/css/apps.css styles for each app (profile, Notepad, Explorer, …)
 assets/js/os.js     window manager, Start menu, boot, sounds, sparkles, Find/Run
 404.html            the Pink Screen of Death
+scripts/            HTML templates + generator for og-image.png and the app icons
 ```
 
 Run it locally with any static server, e.g. `npx serve . -l 3098`.
+
+To regenerate the social image and icons: `npm i --no-save playwright-core && node scripts/generate-images.mjs` (uses your installed Chrome).
 
 **Deploying:** GitHub Pages serves this repo's `main` branch at [jennyplunkett.me](https://jennyplunkett.me/) (see `CNAME`). Every push to `main` redeploys automatically via GitHub's built-in *pages build and deployment* workflow, usually live within a minute. After changing CSS or JS, bump the `?v=` number on their `<link>`/`<script>` tags in `index.html` so browsers fetch the new files.
 

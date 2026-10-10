@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>App icon</title>
+<!--
+  Rendered by scripts/generate-images.mjs at 180 (apple-touch-icon), 192 and 512 (manifest icons).
+  ?s=<size>&k=<pixel scale>. The chip is drawn on the same 32×32 grid as favicon.svg and scaled by a
+  whole number so the pixel art stays crisp. It stays inside the central 80% "safe zone", so the
+  icons also work as maskable icons.
+-->
+<style>
+  * { margin: 0; box-sizing: border-box; }
+  html, body { overflow: hidden; }
+  body {
+    display: grid; place-items: center;
+    background:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Cpath fill='%23fff' fill-opacity='.14' d='M3 4h2v1H3zM6 4h2v1H6zM2 5h7v2H2zM3 7h5v1H3zM4 8h3v1H4zM5 9h1v1H5zM15 16h2v1h-2zM18 16h2v1h-2zM14 17h7v2h-7zM15 19h5v1h-5zM16 20h3v1h-3zM17 21h1v1h-1z'/%3E%3C/svg%3E") 0 0 / var(--tile) var(--tile),
+      radial-gradient(circle at 30% 25%, #e584b0, #bc4c86 60%, #9c3a6c);
+  }
+  svg { display: block; shape-rendering: crispEdges; filter: drop-shadow(var(--sh) var(--sh) 0 rgb(70 0 35 / .35)); }
+</style>
+</head>
+<body>
+<svg id="chip" viewBox="0 0 32 32">
+  <path fill="#7d1747" d="M10 3h2v4h-2zM15 3h2v4h-2zM20 3h2v4h-2zM10 25h2v4h-2zM15 25h2v4h-2zM20 25h2v4h-2zM3 10h4v2H3zM3 15h4v2H3zM3 20h4v2H3zM25 10h4v2h-4zM25 15h4v2h-4zM25 20h4v2h-4z"/>
+  <path fill="#000" d="M6 6h20v20H6z"/>
+  <path fill="#e0115f" d="M7 7h18v18H7z"/>
+  <path fill="#ff8cc6" d="M7 7h18v2H7zM7 7h2v18H7z"/>
+  <path fill="#fff" d="M12 12h3v1h-3zM17 12h3v1h-3zM11 13h10v2H11zM12 15h8v1h-8zM13 16h6v1h-6zM14 17h4v1h-4zM15 18h2v1h-2z"/>
+</svg>
+<script>
+  const q = new URLSearchParams(location.search);
+  const size = +q.get('s') || 180;
+  const k = +q.get('k') || Math.floor(size * 0.7 / 32);
+  document.documentElement.style.cssText = `width:${size}px;height:${size}px;--tile:${k * 6}px;--sh:${k}px`;
+  document.body.style.cssText = `width:${size}px;height:${size}px`;
+  const chip = document.getElementById('chip');
+  chip.setAttribute('width', 32 * k);
+  chip.setAttribute('height', 32 * k);
+</script>
+</body>
+</html>

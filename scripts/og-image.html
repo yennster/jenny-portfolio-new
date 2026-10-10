@@ -1,165 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=1200" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet" />
-  <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+<meta charset="UTF-8" />
+<title>OG image (1200×630)</title>
+<!-- Rendered by scripts/generate-images.mjs. The icon sprite is injected from index.html at render time. -->
+<style>
+  :root {
+    --desktop: #bc4c86; --face: #e6d5db; --face-light: #f6eef1; --hilite: #fff; --shadow: #9d7e8a; --dark: #2b0f1c;
+    --title-a: #7d1747; --title-b: #e07aa7;
+    --raised: inset -1px -1px var(--dark), inset 1px 1px var(--face-light), inset -2px -2px var(--shadow), inset 2px 2px var(--hilite);
+    --pressed: inset -1px -1px var(--hilite), inset 1px 1px var(--dark), inset -2px -2px var(--face-light), inset 2px 2px var(--shadow);
+  }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; }
+  body {
+    font-family: Tahoma, Verdana, sans-serif; position: relative;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' shape-rendering='crispEdges'%3E%3Cpath fill='%23fff' fill-opacity='.16' d='M3 4h2v1H3zM6 4h2v1H6zM2 5h7v2H2zM3 7h5v1H3zM4 8h3v1H4zM5 9h1v1H5zM15 16h2v1h-2zM18 16h2v1h-2zM14 17h7v2h-7zM15 19h5v1h-5zM16 20h3v1h-3zM17 21h1v1h-1z'/%3E%3C/svg%3E") 0 0 / 48px 48px, var(--desktop);
+  }
+  svg.ico { shape-rendering: crispEdges; display: block; }
 
-    body {
-      width: 1200px;
-      height: 630px;
-      overflow: hidden;
-      font-family: 'Atkinson Hyperlegible', system-ui, sans-serif;
-      background: oklch(14% 0.018 200);
-      color: oklch(97% 0.006 193);
-      -webkit-font-smoothing: antialiased;
-    }
+  /* Desktop icons */
+  .icons { position: absolute; left: 18px; top: 22px; display: flex; flex-direction: column; gap: 14px; }
+  .icon { width: 116px; display: flex; flex-direction: column; align-items: center; color: #fff; font-size: 16px; text-align: center; line-height: 1.2; }
+  .icon svg { width: 64px; height: 64px; margin-bottom: 6px; }
 
-    .card {
-      width: 1200px;
-      height: 630px;
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: 72px 80px 64px;
-      overflow: hidden;
-    }
+  /* Window */
+  .window { position: absolute; left: 160px; top: 22px; width: 1016px; height: 548px; background: var(--face); box-shadow: var(--raised), 6px 8px 0 rgb(70 0 35 / .25); padding: 4px; display: flex; flex-direction: column; }
+  .title { height: 34px; display: flex; align-items: center; gap: 8px; padding: 0 4px 0 8px; background: linear-gradient(90deg, var(--title-a), var(--title-b)); color: #fff; font: bold 19px Tahoma, sans-serif; }
+  .title svg { width: 22px; height: 22px; }
+  .title span { flex: 1; }
+  .ctl { display: flex; gap: 3px; }
+  .ctl i { width: 26px; height: 22px; background: var(--face) center no-repeat; box-shadow: var(--raised); display: block; }
+  .ctl i:last-child { margin-left: 4px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='10' viewBox='0 0 8 7' shape-rendering='crispEdges'%3E%3Cpath d='M0 0h2v1H0zM6 0h2v1H6zM1 1h2v1H1zM5 1h2v1H5zM2 2h4v1H2zM3 3h2v1H3zM2 4h4v1H2zM1 5h2v1H1zM5 5h2v1H5zM0 6h2v1H0zM6 6h2v1H6z'/%3E%3C/svg%3E"); }
+  .ctl i:first-child { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='3'%3E%3Crect width='10' height='3'/%3E%3C/svg%3E"); background-position: 7px 14px; }
+  .ctl i:nth-child(2) { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='12' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Cpath fill-rule='evenodd' d='M0 0h9v9H0zM1 2v6h7V2z'/%3E%3C/svg%3E"); }
 
-    /* Background glow blobs */
-    .blob {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(90px);
-      pointer-events: none;
-    }
-    .blob-1 {
-      width: 480px;
-      height: 480px;
-      background: oklch(48% 0.13 192 / 0.18);
-      top: -120px;
-      right: -80px;
-    }
-    .blob-2 {
-      width: 320px;
-      height: 320px;
-      background: oklch(48% 0.13 192 / 0.10);
-      bottom: -100px;
-      left: 200px;
-    }
+  .page { flex: 1; margin-top: 4px; display: flex; flex-direction: column; background: #ffc6dd; box-shadow: inset 1px 1px var(--shadow), inset -1px -1px var(--hilite); overflow: hidden;
+    background-image: radial-gradient(circle at 20px 20px, #fff 0 2px, transparent 3px), radial-gradient(circle at 46px 10px, #ffe2ef 0 1.6px, transparent 2.6px);
+    background-size: 60px 60px; }
+  .ms-top { background: #003399; color: #fff; padding: 12px 22px; display: flex; align-items: baseline; gap: 14px; }
+  .ms-logo { font: bold italic 36px/1 Arial, sans-serif; letter-spacing: -1px; }
+  .ms-top small { font: 17px Verdana, sans-serif; opacity: .9; }
+  .ms-nav { background: #6699cc; color: #fff; font: bold 16px Verdana, sans-serif; padding: 7px 22px; word-spacing: 2px; }
 
-    /* Subtle grid lines */
-    .grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(oklch(97% 0.006 193 / 0.04) 1px, transparent 1px),
-        linear-gradient(90deg, oklch(97% 0.006 193 / 0.04) 1px, transparent 1px);
-      background-size: 60px 60px;
-    }
+  .card { margin: 22px 22px 0; background: #fff; border: 2px solid #f48fb8; padding: 22px 26px; display: flex; gap: 30px; align-items: center; }
+  .photo { width: 236px; flex: none; border: 2px solid #999; padding: 5px; background: #fff; }
+  .photo img { width: 100%; display: block; }
+  .name {
+    font: bold 70px/1.05 "Comic Sans MS", "Chalkboard SE", cursive; letter-spacing: -1px;
+    background: linear-gradient(100deg, #b0105a 0%, #ff4fa0 45%, #c2185b 70%, #ff79b8 100%);
+    -webkit-background-clip: text; background-clip: text; color: transparent; filter: drop-shadow(2px 2px 0 #ffe1ee);
+    position: relative; display: inline-block;
+  }
+  .name::after { content: "✦"; position: absolute; right: -34px; top: -6px; font-size: 30px; color: #ff4fa0; -webkit-text-fill-color: #ff4fa0; }
+  .quote { font: italic 24px/1.3 Verdana, sans-serif; color: #444; margin: 8px 0 16px; }
+  .facts { font: 22px/1.5 Verdana, sans-serif; color: #222; }
+  .facts b { color: #c2185b; }
+  .online { display: inline-flex; align-items: center; gap: 8px; color: #e8590c; font: bold 22px Verdana, sans-serif; margin-top: 12px; }
+  .online svg { width: 24px; height: 24px; }
+  .mood { font: 20px Verdana, sans-serif; margin-left: 26px; color: #333; }
+  .mood b { color: #c2185b; }
 
-    .top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      position: relative;
-      z-index: 1;
-    }
-
-    .monogram {
-      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
-      font-size: 2.25rem;
-      font-weight: 800;
-      color: oklch(48% 0.13 192);
-      letter-spacing: -0.03em;
-    }
-
-    .badge {
-      font-family: 'Atkinson Hyperlegible', system-ui, sans-serif;
-      font-size: 0.8rem;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: oklch(48% 0.13 192);
-      border: 1.5px solid oklch(48% 0.13 192 / 0.5);
-      padding: 0.4rem 0.9rem;
-      border-radius: 100px;
-    }
-
-    .main {
-      position: relative;
-      z-index: 1;
-    }
-
-    h1 {
-      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
-      font-size: 7rem;
-      font-weight: 800;
-      line-height: 0.95;
-      letter-spacing: -0.03em;
-      color: oklch(97% 0.006 193);
-      margin-bottom: 1.5rem;
-    }
-
-    .role {
-      font-size: 1.5rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: oklch(48% 0.13 192);
-    }
-
-    .bottom {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      position: relative;
-      z-index: 1;
-    }
-
-    .url {
-      font-size: 1rem;
-      font-weight: 700;
-      color: oklch(55% 0.025 200);
-      letter-spacing: 0.04em;
-    }
-
-    /* Accent line */
-    .accent-line {
-      position: absolute;
-      left: 80px;
-      top: 0;
-      width: 3px;
-      height: 100%;
-      background: linear-gradient(to bottom, transparent, oklch(48% 0.13 192), transparent);
-      opacity: 0.6;
-    }
-  </style>
+  /* Taskbar */
+  .taskbar { position: absolute; left: 0; right: 0; bottom: 0; height: 44px; background: var(--face); box-shadow: inset 0 1px var(--face-light), inset 0 2px var(--hilite); display: flex; align-items: center; gap: 6px; padding: 4px; }
+  .start { display: flex; align-items: center; gap: 6px; height: 36px; padding: 0 12px 0 8px; box-shadow: var(--raised); font: bold 20px Tahoma, sans-serif; }
+  .start svg { width: 26px; height: 26px; }
+  .task { display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; width: 300px; box-shadow: var(--pressed); font: bold 17px Tahoma, sans-serif;
+    background: repeating-conic-gradient(var(--face-light) 0 25%, #fff 0 50%) 0 0 / 2px 2px; }
+  .task svg { width: 22px; height: 22px; }
+  .tray { margin-left: auto; height: 36px; display: flex; align-items: center; gap: 10px; padding: 0 14px; box-shadow: inset -1px -1px var(--hilite), inset 1px 1px var(--shadow); font: 18px Tahoma, sans-serif; }
+  .tray svg { width: 22px; height: 22px; }
+</style>
 </head>
 <body>
-  <div class="card">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="grid"></div>
-    <div class="accent-line"></div>
+<!--SPRITE-->
+<div class="icons">
+  <div class="icon"><svg class="ico" viewBox="0 0 32 32"><use href="#i-computer"/></svg>My Computer</div>
+  <div class="icon"><svg class="ico" viewBox="0 0 32 32"><use href="#i-notepad"/></svg>resume.txt</div>
+  <div class="icon"><svg class="ico" viewBox="0 0 32 32"><use href="#i-media"/></svg>Talks</div>
+  <div class="icon"><svg class="ico" viewBox="0 0 32 32"><use href="#i-book"/></svg>AI at the Edge</div>
+  <div class="icon"><svg class="ico" viewBox="0 0 32 32"><use href="#i-globe"/></svg>AI Apps</div>
+</div>
 
-    <div class="top">
-      <div class="monogram">JS</div>
-      <div class="badge">jennyspeelman.me</div>
-    </div>
-
-    <div class="main">
-      <h1>Jenny<br>Speelman</h1>
-      <div class="role">Staff Engineer · Developer Relations</div>
-    </div>
-
-    <div class="bottom">
-      <span class="url">jennyspeelman.me</span>
+<div class="window">
+  <div class="title"><svg class="ico" viewBox="0 0 32 32"><use href="#i-space"/></svg><span>jennyspeelman.me | Jenny Speelman's Profile</span><div class="ctl"><i></i><i></i><i></i></div></div>
+  <div class="page">
+    <div class="ms-top"><span class="ms-logo">jennyspeelman.me</span><small>a place for edge AI friends</small></div>
+    <div class="ms-nav">Home | Blog | Videos | Book | Apps | Resume | Mail</div>
+    <div class="card">
+      <div class="photo"><img src="../images/jenny-680.jpg" alt="" /></div>
+      <div>
+        <div class="name">Jenny Speelman</div>
+        <p class="quote">"Building intelligent things at the edge ✨"</p>
+        <p class="facts">Staff Engineer, Developer Relations<br>Edge Impulse / Qualcomm · Amsterdam<br>Co-author of <b>AI at the Edge</b> (O'Reilly)</p>
+        <p><span class="online"><svg class="ico" viewBox="0 0 16 16"><use href="#i-online"/></svg>Online Now!</span><span class="mood"><b>Mood:</b> quantized (int8) 🤖</span></p>
+      </div>
     </div>
   </div>
+</div>
+
+<div class="taskbar">
+  <div class="start"><svg class="ico" viewBox="0 0 32 32"><use href="#i-chip"/></svg>Start</div>
+  <div class="task"><svg class="ico" viewBox="0 0 32 32"><use href="#i-space"/></svg>jennyspeelman.me</div>
+  <div class="tray"><svg class="ico" viewBox="0 0 16 16"><use href="#i-speaker"/></svg>12:00 PM</div>
+</div>
 </body>
 </html>
