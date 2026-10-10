@@ -383,3 +383,40 @@ th[aria-sort="descending"] .sort-ind { visibility: visible; border-bottom-width:
 .connect-qr svg { display: block; width: 100%; height: auto; shape-rendering: crispEdges; }
 .connect-url { margin: 8px 0 12px; font: 12px var(--font-mono); word-break: break-all; }
 .connect-buttons { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+
+/* --------------------------------------------------------------------------
+   Phones: list rows stack (title, then one muted line of details) instead of
+   squeezing 3–4 columns, and the folder/year pane becomes a row of buttons
+   above the list. Sorting stays available from the "Sort by" menu.
+   -------------------------------------------------------------------------- */
+@media (max-width: 640px) {
+  .listview thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .listview, .listview tbody, .listview tr { display: block; }
+  .listview { width: 100% !important; }
+  .listview tbody[hidden], .listview tr[hidden] { display: none; }
+  .listview tbody tr:not(.group-row) { padding: 5px 8px 6px; border-bottom: 1px solid #f6e3ec; }
+  .listview tbody td { display: inline; padding: 0; }
+  .listview tbody td:first-child { display: block; }
+  .listview tbody td.muted { white-space: normal; font-size: 11.5px; }
+  .listview tbody td:nth-child(2) { padding-left: 21px; }
+  .listview tbody td.muted + td.muted::before { content: " · "; }
+  .listview .name, .listview .wrap { min-width: 0; }
+  .listview .group-row th { display: block; }
+  .listview tbody tr:hover td { background: none; }
+  .listview tbody tr.selected { background: var(--select); color: var(--select-text); }
+  .listview tbody tr.selected td { background: none; }
+  .col-resizer { display: none; }
+
+  .split, .media-grid { grid-template-columns: minmax(0, 1fr); grid-template-rows: auto minmax(0, 1fr); row-gap: 3px; }
+  .media-grid { grid-template-rows: auto auto minmax(0, 1fr); }
+  .splitter { display: none; }
+  .split > nav.pane { height: auto; }
+  .tree { display: flex; flex-wrap: wrap; gap: 2px 6px; padding: 4px; }
+  .tree ul, .tree li { display: contents; }
+  .tree button { width: auto; padding: 3px 4px; }
+  .media-grid > .player .viz { width: 56px; }
+}
+
+/* Plain view has no media player, so there's no "now playing" row to highlight */
+html.plain .listview tbody tr.selected, html.plain .listview tbody tr.selected td { background: none; color: inherit; }
+html.plain .listview tbody tr.selected a { color: #000; }
