@@ -26,6 +26,8 @@ assets/js/os.js     window manager, Start menu, boot, sounds, sparkles, Find/Run
 
 Run it locally with any static server, e.g. `npx serve . -l 3098`.
 
+**Deploying:** GitHub Pages serves this repo's `main` branch at [jennyplunkett.me](https://jennyplunkett.me/) (see `CNAME`). Every push to `main` redeploys automatically via GitHub's built-in *pages build and deployment* workflow, usually live within a minute. After changing CSS or JS, bump the `?v=` number on their `<link>`/`<script>` tags in `index.html` so browsers fetch the new files.
+
 All icons, artwork, and sounds are original. Windows® and MySpace® are trademarks of their respective owners; this site is an affectionate homage and isn't affiliated with either.
 
 ---
