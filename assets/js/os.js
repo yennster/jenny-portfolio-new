@@ -881,7 +881,7 @@
   let findIndex = null;
   function buildIndex() {
     const items = [];
-    const add = (name, extra) => items.push({ name, hay: `${name} ${extra.folder} ${extra.type}`.toLowerCase(), ...extra });
+    const add = (name, extra) => items.push({ name, hay: `${name} ${extra.folder} ${extra.type} ${extra.more || ''}`.toLowerCase(), ...extra });
     $$('#writingTable tbody tr[data-group]').forEach(r => {
       const a = $('a', r);
       add(a.textContent, { href: a.href, folder: `Writing\\${r.dataset.groupLabel}`, type: r.cells[1].textContent, scope: 'writing', icon: $('use', r).getAttribute('href') });
@@ -892,7 +892,7 @@
     });
     $$('#apps .app-list li').forEach(li => {
       const a = $('a', li);
-      add(a.textContent, { href: a.href, folder: 'Internet\\jennyspeelman.dev', type: $('p', li).textContent, scope: 'all', icon: $('use', li).getAttribute('href') });
+      add(a.textContent, { href: a.href, folder: 'Internet\\jennyspeelman.dev', type: 'AI app', more: $('p', li).textContent, scope: 'all', icon: $('use', li).getAttribute('href') });
     });
     icons.forEach(icon => add($('.icon-label', icon).textContent, { open: icon.dataset.open, folder: 'Desktop', type: 'Shortcut', scope: 'all', icon: $('use', icon).getAttribute('href') }));
     return items;
@@ -906,12 +906,13 @@
     const status = $('#findStatus');
     out.textContent = '';
     if (!q) { status.textContent = 'Type something and press Find Now.'; return; }
-    const terms = q.split(/\s+/);
-    const hits = findIndex.filter(i => (scope === 'all' || i.scope === scope) && terms.every(t => i.hay.includes(t)));
+    // Each term must match the start of a word ("ai" finds "AI-assisted", not "email")
+    const terms = q.split(/\s+/).map(t => new RegExp(`(^|[^\\p{L}\\p{N}])${t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}`, 'u'));
+    const hits = findIndex.filter(i => (scope === 'all' || i.scope === scope) && terms.every(t => t.test(i.hay)));
     const frag = document.createDocumentFragment();
     hits.forEach(hit => {
       const tr = document.createElement('tr');
-      tr.innerHTML = `<td><span class="name"><svg class="ico" aria-hidden="true"><use href="${hit.icon}"/></svg><a></a></span></td><td class="muted"></td><td class="muted"></td>`;
+      tr.innerHTML = `<td><span class="name"><svg class="ico" aria-hidden="true"><use href="${hit.icon}"/></svg><a></a></span></td><td class="muted"></td><td class="muted wrap"></td>`;
       const a = $('a', tr);
       a.textContent = hit.name;
       if (hit.open) { a.href = `#${hit.open}`; a.dataset.open = hit.open; }
