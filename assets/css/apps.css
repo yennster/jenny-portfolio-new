@@ -15,7 +15,7 @@
 .listview tbody tr:hover td { background: #fbe3ee; }
 .listview tbody tr.selected td { background: var(--select); color: var(--select-text); }
 .listview tbody tr.selected a { color: var(--select-text); }
-.listview .name { display: flex; gap: 5px; align-items: flex-start; min-width: 260px; }
+.listview .name { display: flex; gap: 5px; align-items: flex-start; min-width: 200px; }
 .listview .name .ico { width: 16px; height: 16px; margin-top: 1px; }
 .listview a { color: #000; text-decoration: none; }
 .listview a:hover, .listview a:focus-visible { text-decoration: underline; color: var(--link); }
@@ -39,7 +39,7 @@
 .tree .count { color: var(--muted); }
 .tree button[aria-pressed="true"] .count { color: #ffd6e8; }
 
-.split { flex: 1; min-height: 0; display: grid; grid-template-columns: 190px 1fr; gap: 3px; }
+.split { flex: 1; min-height: 0; display: grid; grid-template-columns: var(--side, 190px) 7px minmax(0, 1fr); }
 .split > .pane { height: 100%; }
 
 /* --------------------------------------------------------------------------
@@ -225,7 +225,7 @@
 .player-controls { display: flex; gap: 4px; }
 .player-controls .btn { min-width: 34px; padding: 2px 8px; }
 .player-controls .btn .ico { width: 16px; height: 16px; }
-.media-grid { display: grid; grid-template-columns: 120px 1fr; grid-template-rows: auto 1fr; gap: 3px; flex: 1; min-height: 0; }
+.media-grid { display: grid; grid-template-columns: var(--side, 120px) 7px minmax(0, 1fr); grid-template-rows: auto 1fr; row-gap: 3px; flex: 1; min-height: 0; }
 .media-grid > .player { grid-column: 1 / -1; grid-template-columns: auto minmax(0, 1fr) auto; }
 .media-grid > .player .viz { grid-row: auto; width: 110px; }
 
@@ -353,3 +353,22 @@ th[aria-sort="ascending"] .sort-ind { visibility: visible; border-top-width: 0; 
 th[aria-sort="descending"] .sort-ind { visibility: visible; border-bottom-width: 0; border-top-color: currentColor; }
 .sort-label { padding: 0 4px 0 4px; white-space: nowrap; }
 .toolbar select { min-height: 21px; padding: 1px 3px; max-width: 100%; }
+
+/* --------------------------------------------------------------------------
+   Resizable panes (drag the bar between the left pane and the list) and
+   resizable columns (drag a column header's right edge; double-click resets)
+   -------------------------------------------------------------------------- */
+.splitter { cursor: col-resize; touch-action: none; position: relative; outline: none; }
+.splitter::after { content: ""; position: absolute; inset: 0 2px; }
+.splitter:hover::after, .splitter:focus-visible::after, .splitter.dragging::after { background: var(--shadow); opacity: .35; }
+.splitter:focus-visible { outline: 1px dotted #000; outline-offset: -1px; }
+
+.col-resizer { position: absolute; top: 0; right: 0; width: 7px; height: 100%; cursor: col-resize; z-index: 2; touch-action: none; }
+.col-resizer::after { content: ""; position: absolute; right: 1px; top: 3px; bottom: 3px; width: 2px; }
+.col-resizer:hover::after, .col-resizer.dragging::after { background: var(--select); }
+.listview.is-fixed td { overflow: hidden; text-overflow: ellipsis; }
+.listview.is-fixed .name { min-width: 0; }
+.listview.is-fixed .name > span, .listview.is-fixed .name > a { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
+
+.ms-links th { white-space: nowrap; }
+.ms-links th .ico { width: 16px; height: 16px; display: inline-block; vertical-align: -3px; margin-right: 5px; }

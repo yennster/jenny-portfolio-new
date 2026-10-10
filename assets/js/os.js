@@ -94,14 +94,14 @@
       bus.connect(delay);
       delay.connect(master);
       master.connect(audio.destination);
-      // First gesture of the visit "logs on": play the startup chime once per session
+      // First gesture after the page loads "starts up" the computer with the chime
       // (during the boot screen, the boot's own ending plays it instead)
-      if (!chimedThisSession() && !html.classList.contains('booting')) chime();
+      if (!chimedThisLoad && !html.classList.contains('booting')) chime();
     }
     if (audio.state === 'suspended') audio.resume();
   }
-  addEventListener('pointerdown', unlockAudio, { passive: true });
-  addEventListener('keydown', unlockAudio);
+  // Browsers only allow audio after a gesture, and they disagree on which ones count, so listen to all of them
+  ['pointerdown', 'click', 'touchend', 'keydown'].forEach(type => addEventListener(type, unlockAudio, { passive: true }));
 
   // Run a sound once audio is unlocked; the very first gesture may still be resuming the context
   function play(fn) {
@@ -111,9 +111,7 @@
   }
 
   let lastChime = -Infinity;
-  function chimedThisSession() {
-    try { return sessionStorage.getItem('j98.chimed') === '1'; } catch (_) { return true; }
-  }
+  let chimedThisLoad = false;
 
   function tone(freq, at, dur, type = 'sine', peak = 0.1, attack = 0.02) {
     const osc = audio.createOscillator();
@@ -131,16 +129,16 @@
   // The "Jenny 98" startup chime: an original rising A♭maj9 arpeggio over a soft pad.
   function chime() {
     play(() => {
+      chimedThisLoad = true;
       lastChime = performance.now();
-      try { sessionStorage.setItem('j98.chimed', '1'); } catch (_) { /* ignore */ }
       const t = audio.currentTime + 0.05;
-      tone(103.83, t, 3.4, 'triangle', 0.05, 0.5);
-      tone(207.65, t, 3.2, 'triangle', 0.04, 0.6);
-      tone(311.13, t + 0.1, 3.0, 'sine', 0.05, 0.6);
-      [415.3, 523.25, 622.25, 783.99, 932.33].forEach((f, i) => tone(f, t + i * 0.17, 1.8, 'sine', 0.08, 0.015));
-      tone(1046.5, t + 0.95, 2.3, 'triangle', 0.035, 0.05);
-      tone(1244.51, t + 1.05, 2.2, 'sine', 0.03, 0.05);
-      tone(1567.98, t + 1.15, 2.0, 'sine', 0.02, 0.05);
+      tone(103.83, t, 3.4, 'triangle', 0.06, 0.5);
+      tone(207.65, t, 3.2, 'triangle', 0.05, 0.6);
+      tone(311.13, t + 0.1, 3.0, 'sine', 0.06, 0.6);
+      [415.3, 523.25, 622.25, 783.99, 932.33].forEach((f, i) => tone(f, t + i * 0.17, 1.8, 'sine', 0.12, 0.015));
+      tone(1046.5, t + 0.95, 2.3, 'triangle', 0.05, 0.05);
+      tone(1244.51, t + 1.05, 2.2, 'sine', 0.045, 0.05);
+      tone(1567.98, t + 1.15, 2.0, 'sine', 0.03, 0.05);
     });
   }
 
@@ -158,7 +156,7 @@
   // Window manager
   // ------------------------------------------------------------------------
   const SIZES = {
-    profile: [900, 0], resume: [580, 540], writing: [780, 500], talks: [860, 520], book: [660, 440],
+    profile: [900, 0], resume: [580, 540], writing: [900, 520], talks: [920, 540], book: [660, 440],
     apps: [720, 560], contact: [540, 480], computer: [460, 480], recycle: [600, 300], help: [520, 470],
     find: [620, 440], run: [380, 196], settings: [430, 500],
   };
@@ -887,6 +885,82 @@
   })();
 
   // ------------------------------------------------------------------------
+  // Resizable panes (the bar between a window's left pane and its list) and
+  // resizable list columns (drag a header's right edge; double-click resets)
+  // ------------------------------------------------------------------------
+  $$('.splitter').forEach(bar => {
+    const grid = bar.parentElement;
+    const pane = bar.previousElementSibling;
+    const key = `j98.side.${bar.closest('.window').id}`;
+    function set(w) {
+      const max = grid.clientWidth ? grid.clientWidth * 0.6 : Infinity;
+      w = Math.round(Math.min(Math.max(w, 80), Math.max(max, 120)));
+      grid.style.setProperty('--side', `${w}px`);
+      bar.setAttribute('aria-valuenow', String(w));
+      return w;
+    }
+    bar.setAttribute('aria-valuemin', '80');
+    const saved = store.get(key, null);
+    if (saved) set(saved);
+    bar.addEventListener('pointerdown', e => {
+      if (e.button !== 0) return;
+      const w0 = pane.offsetWidth;
+      const sx = e.clientX;
+      bar.classList.add('dragging');
+      track(e, ev => set(w0 + ev.clientX - sx));
+      addEventListener('pointerup', () => { bar.classList.remove('dragging'); store.set(key, pane.offsetWidth); }, { once: true });
+    });
+    bar.addEventListener('keydown', e => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      e.preventDefault();
+      store.set(key, set(pane.offsetWidth + (e.key === 'ArrowRight' ? 16 : -16)));
+    });
+    bar.addEventListener('dblclick', () => {
+      grid.style.removeProperty('--side');
+      store.set(key, null);
+    });
+  });
+
+  function resizableColumns(table) {
+    const ths = $$('thead th', table);
+    ths.slice(0, -1).forEach(th => {
+      const grip = document.createElement('span');
+      grip.className = 'col-resizer';
+      grip.setAttribute('aria-hidden', 'true');
+      th.append(grip);
+      grip.addEventListener('click', e => e.stopPropagation());
+      grip.addEventListener('pointerdown', e => {
+        if (e.button !== 0) return;
+        e.stopPropagation();
+        // Switch from automatic to fixed column widths, starting from what's on screen now
+        if (!table.classList.contains('is-fixed')) {
+          const widths = ths.map(h => h.getBoundingClientRect().width);
+          ths.forEach((h, i) => { h.style.width = `${widths[i]}px`; });
+          table.style.width = `${widths.reduce((a, b) => a + b, 0)}px`;
+          table.classList.add('is-fixed');
+        }
+        const w0 = th.getBoundingClientRect().width;
+        const t0 = table.getBoundingClientRect().width;
+        const sx = e.clientX;
+        grip.classList.add('dragging');
+        track(e, ev => {
+          const w = Math.max(48, w0 + ev.clientX - sx);
+          th.style.width = `${w}px`;
+          table.style.width = `${t0 + w - w0}px`;
+        });
+        addEventListener('pointerup', () => grip.classList.remove('dragging'), { once: true });
+      });
+      grip.addEventListener('dblclick', e => {
+        e.stopPropagation();
+        ths.forEach(h => { h.style.width = ''; });
+        table.style.width = '';
+        table.classList.remove('is-fixed');
+      });
+    });
+  }
+  $$('.listview').forEach(resizableColumns);
+
+  // ------------------------------------------------------------------------
   // App: Mail
   // ------------------------------------------------------------------------
   onOpen.contact = (el, opts) => {
@@ -1101,21 +1175,39 @@
   setInterval(tick, 15000);
 
   // ------------------------------------------------------------------------
-  // Profile bits: last-login date & a very honest hit counter
+  // Profile bits: last-login date & hit counter
   // ------------------------------------------------------------------------
   $$('[data-today]').forEach(el => { el.textContent = new Date().toLocaleDateString('en-US'); });
-  (function counter() {
-    let visits = store.get('j98.visits', 0);
+  // Hit counter: a real site-wide count from Abacus (a free counting API, no cookies).
+  // Each browser session counts once; local dev uses its own key so testing doesn't
+  // inflate the real number. If the service can't be reached, fall back to this
+  // browser's own count.
+  (async function counter() {
+    const digits = $('#visitCounter');
+    const spoken = $('#visitCounterText');
+    const note = $('#visitCounterNote');
+    const live = /(^|\.)jennyplunkett\.me$/.test(location.hostname);
+    const key = live ? 'jennyplunkett-me/visitors' : 'jennyplunkett-me-dev/visitors';
     let counted = false;
     try { counted = sessionStorage.getItem('j98.counted') === '1'; } catch (_) { /* ignore */ }
-    if (!counted) {
-      visits += 1;
-      store.set('j98.visits', visits);
-      try { sessionStorage.setItem('j98.counted', '1'); } catch (_) { /* ignore */ }
+    const markCounted = () => { try { sessionStorage.setItem('j98.counted', '1'); } catch (_) { /* ignore */ } };
+    function show(n, local) {
+      digits.innerHTML = [...String(Math.max(n, 1)).padStart(6, '0')].map(d => `<span>${d}</span>`).join('');
+      spoken.textContent = String(n);
+      note.textContent = local ? '(on this computer, anyway)' : '';
     }
-    const digits = String(Math.max(visits, 1)).padStart(6, '0');
-    $('#visitCounter').innerHTML = [...digits].map(d => `<span>${d}</span>`).join('');
-    $('#visitCounterText').textContent = String(Math.max(visits, 1));
+    try {
+      const res = await fetch(`https://abacus.jasoncameron.dev/${counted ? 'get' : 'hit'}/${key}`, { cache: 'no-store' });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const { value } = await res.json();
+      if (typeof value !== 'number') throw new Error('unexpected response');
+      markCounted();
+      show(value, false);
+    } catch (_) {
+      let visits = store.get('j98.visits', 0);
+      if (!counted) { visits += 1; store.set('j98.visits', visits); markCounted(); }
+      show(visits, true);
+    }
   })();
 
   // ------------------------------------------------------------------------

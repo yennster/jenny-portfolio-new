@@ -11,7 +11,7 @@
   <meta property="og:url" content="https://jennyplunkett.me/" />
   <meta property="og:title" content="Jenny Speelman — Staff Engineer, Developer Relations" />
   <meta property="og:description" content="Jenny Speelman is a Staff Engineer in Developer Relations specializing in Edge AI, TinyML, and embedded machine learning. Co-author of AI at the Edge (O'Reilly)." />
-  <meta property="og:image" content="https://jennyplunkett.me/og-image.png" />
+  <meta property="og:image" content="https://jennyplunkett.me/og-image.png?v=2" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta property="og:image:alt" content="Jenny Speelman — Staff Engineer, Developer Relations" />
@@ -19,12 +19,13 @@
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Jenny Speelman — Staff Engineer, Developer Relations" />
   <meta name="twitter:description" content="Edge AI, embedded ML, and the future of intelligent hardware. Co-author of AI at the Edge (O'Reilly)." />
-  <meta name="twitter:image" content="https://jennyplunkett.me/og-image.png" />
+  <meta name="twitter:image" content="https://jennyplunkett.me/og-image.png?v=2" />
 
   <link rel="preconnect" href="https://plausible.io" crossorigin />
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
-  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg?v=2" />
+  <link rel="icon" type="image/png" sizes="192x192" href="images/icons/icon-192.png?v=2" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png?v=2" />
+  <link rel="manifest" href="manifest.json?v=2" />
   <meta name="theme-color" content="#bc4c86" />
   <link rel="canonical" href="https://jennyplunkett.me/" />
   <!-- IndieWeb: rel="me" for identity verification across federated social -->
@@ -52,8 +53,8 @@
     })();
   </script>
 
-  <link rel="stylesheet" href="assets/css/os.css?v=5" />
-  <link rel="stylesheet" href="assets/css/apps.css?v=5" />
+  <link rel="stylesheet" href="assets/css/os.css?v=6" />
+  <link rel="stylesheet" href="assets/css/apps.css?v=6" />
 
   <!-- Structured data: ProfilePage + Person + Book + ScholarlyArticle -->
   <script type="application/ld+json">
@@ -125,7 +126,7 @@
     plausible.init({ hashBasedRouting: true })
   </script>
 
-  <script src="assets/js/os.js?v=5" defer></script>
+  <script src="assets/js/os.js?v=6" defer></script>
 </head>
 <body>
 
@@ -316,6 +317,15 @@
                 <tr><th scope="row">Education</th><td>The University of Texas at Austin, B.S. Electrical &amp; Computer Engineering</td></tr>
               </table>
             </div>
+
+            <div class="ms-card ms-card--flush">
+              <h3 class="ms-boxhead">Jenny's Links</h3>
+              <table class="ms-table ms-links">
+                <tr><th scope="row"><svg class="ico" aria-hidden="true"><use href="#i-addfriend"/></svg>LinkedIn</th><td><a href="https://www.linkedin.com/in/jennyplunkett" target="_blank" rel="noopener me">linkedin.com/in/jennyplunkett</a></td></tr>
+                <tr><th scope="row"><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg>GitHub</th><td><a href="https://github.com/yennster" target="_blank" rel="noopener me">github.com/yennster</a></td></tr>
+                <tr><th scope="row"><svg class="ico" aria-hidden="true"><use href="#i-forum"/></svg>Mastodon</th><td><a href="https://mastodon.world/@jennyp" target="_blank" rel="noopener me">mastodon.world/@jennyp</a></td></tr>
+              </table>
+            </div>
           </div>
 
           <!-- Right column -->
@@ -374,7 +384,7 @@
             <span class="badge88 b4">Best viewed<em>800×600</em></span>
             <span class="badge88 b5">Under<em>construction</em></span>
           </div>
-          <p class="js-only">You are visitor # <span class="counter" id="visitCounter" aria-hidden="true"></span><span class="sr-only" id="visitCounterText"></span> (on this computer, anyway)</p>
+          <p class="js-only">You are visitor # <span class="counter" id="visitCounter" aria-hidden="true"><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span><span>-</span></span><span class="sr-only" id="visitCounterText" aria-live="polite"></span> <span id="visitCounterNote"></span></p>
           <p>© 2026 Jenny Speelman · Amsterdam, Netherlands · This profile is an affectionate MySpace homage and isn't affiliated with MySpace.</p>
         </footer>
       </div>
@@ -555,6 +565,7 @@ B.S. Electrical & Computer Engineering · 2013 – 2018
             </li>
           </ul>
         </nav>
+        <div class="splitter js-only" role="separator" aria-orientation="vertical" aria-label="Resize the folder pane" tabindex="0"></div>
         <div class="pane">
           <table class="listview" id="writingTable">
             <caption class="sr-only">Blogs, docs, research &amp; tutorials by Jenny Speelman</caption>
@@ -673,6 +684,7 @@ B.S. Electrical & Computer Engineering · 2013 – 2018
             </li>
           </ul>
         </nav>
+        <div class="splitter js-only" role="separator" aria-orientation="vertical" aria-label="Resize the library pane" tabindex="0"></div>
         <div class="pane">
           <table class="listview" id="talksTable">
             <caption class="sr-only">Webinars, talks &amp; interviews by Jenny Speelman, newest first</caption>
@@ -998,6 +1010,7 @@ B.S. Electrical & Computer Engineering · 2013 – 2018
           <ul class="desktop-only">
             <li>Double-click a desktop icon (or tap it on a phone) to open it.</li>
             <li>Drag windows by their title bar. Resize from the bottom-right corner.</li>
+            <li>In Writing and Talks, drag the bar beside the left pane, or the edge of a column header, to resize it. Double-click to reset.</li>
             <li>Use the <b>Start</b> menu for everything, including Find, Run, and Display Properties.</li>
             <li>Keyboard: <kbd>Tab</kbd> moves between things, <kbd>Enter</kbd> opens, <kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd> opens Find, <kbd>Esc</kbd> closes menus and dialogs.</li>
           </ul>
@@ -1006,7 +1019,7 @@ B.S. Electrical & Computer Engineering · 2013 – 2018
             <p><button class="btn js-only" type="button" data-action="plain-mode">Switch to plain view</button> shows all the same content as a normal scrolling page. You can also bookmark <a href="#plainview">jennyspeelman.me/#plainview</a> to go straight there. Sparkles and sounds can be turned off in <a href="#settings" data-open="settings">Display Properties</a>, and all animation stops if your system asks for reduced motion.</p>
           </div>
           <h4>About</h4>
-          <p>Built by Jenny Speelman with plain HTML, CSS, and JavaScript. All icons, artwork, and the startup chime are original. Windows® and MySpace® are trademarks of their respective owners. This site is an affectionate homage and isn't affiliated with either.</p>
+          <p>Built by Jenny Speelman with plain HTML, CSS, and JavaScript. All icons, artwork, and the startup chime are original. The hit counter is powered by <a href="https://jasoncameron.dev/abacus/" target="_blank" rel="noopener">Abacus</a> (no cookies). Windows® and MySpace® are trademarks of their respective owners. This site is an affectionate homage and isn't affiliated with either.</p>
         </div>
       </div>
     </div>
