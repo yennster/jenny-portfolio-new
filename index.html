@@ -1,0 +1,1155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Jenny Speelman — Staff Engineer, Developer Relations</title>
+  <meta name="description" content="Jenny Speelman is a Staff Engineer in Developer Relations specializing in Edge AI, TinyML, and embedded machine learning. Co-author of AI at the Edge (O'Reilly)." />
+  <meta name="author" content="Jenny Speelman" />
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://jennyspeelman.me/" />
+  <meta property="og:title" content="Jenny Speelman — Staff Engineer, Developer Relations" />
+  <meta property="og:description" content="Jenny Speelman is a Staff Engineer in Developer Relations specializing in Edge AI, TinyML, and embedded machine learning. Co-author of AI at the Edge (O'Reilly)." />
+  <meta property="og:image" content="https://jennyspeelman.me/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Jenny Speelman — Staff Engineer, Developer Relations" />
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Jenny Speelman — Staff Engineer, Developer Relations" />
+  <meta name="twitter:description" content="Edge AI, embedded ML, and the future of intelligent hardware. Co-author of AI at the Edge (O'Reilly)." />
+  <meta name="twitter:image" content="https://jennyspeelman.me/og-image.png" />
+
+  <link rel="preconnect" href="https://plausible.io" crossorigin />
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+  <link rel="manifest" href="manifest.json" />
+  <meta name="theme-color" content="#bc4c86" />
+  <link rel="canonical" href="https://jennyspeelman.me/" />
+  <!-- IndieWeb: rel="me" for identity verification across federated social -->
+  <link rel="me" href="https://mastodon.world/@jennyp" />
+  <link rel="me" href="https://github.com/yennster" />
+  <link rel="me" href="https://www.linkedin.com/in/jennyplunkett" />
+
+  <!-- Boot-time setup, kept inline so the desktop colour / boot screen are right on first paint. -->
+  <script>
+    (function () {
+      var d = document.documentElement;
+      d.classList.add('js');
+      try {
+        var s = JSON.parse(localStorage.getItem('j98.settings') || '{}');
+        if (s.desktop) d.style.setProperty('--desktop', s.desktop);
+        if (s.label) d.style.setProperty('--icon-label', s.label);
+        if (s.pattern) d.setAttribute('data-pattern', s.pattern);
+        if (localStorage.getItem('j98.plain') === '1') d.classList.add('plain');
+        var forced = /[?&]boot\b/.test(location.search);
+        var reduce = window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches;
+        var firstVisit = !localStorage.getItem('j98.booted');
+        if (!d.classList.contains('plain') && (forced || (!reduce && (firstVisit || s.bootEvery)))) d.classList.add('booting');
+      } catch (_) { /* storage blocked: skip the boot screen, keep defaults */ }
+    })();
+  </script>
+
+  <link rel="stylesheet" href="assets/css/os.css" />
+  <link rel="stylesheet" href="assets/css/apps.css" />
+
+  <!-- Structured data: ProfilePage + Person + Book + ScholarlyArticle -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfilePage",
+        "@id": "https://jennyspeelman.me/#profile",
+        "mainEntity": { "@id": "https://jennyspeelman.me/#person" }
+      },
+      {
+        "@type": "Person",
+        "@id": "https://jennyspeelman.me/#person",
+        "name": "Jenny Speelman",
+        "alternateName": "Jenny Plunkett",
+        "jobTitle": "Staff Engineer, Developer Relations",
+        "description": "Staff Engineer in Developer Relations specializing in Edge AI, TinyML, and embedded machine learning. Co-author of AI at the Edge (O'Reilly).",
+        "url": "https://jennyspeelman.me/",
+        "image": "https://jennyspeelman.me/images/jenny-680.jpg",
+        "knowsAbout": ["Edge AI", "TinyML", "Embedded Machine Learning", "Developer Relations", "Technical Writing", "IoT"],
+        "address": { "@type": "PostalAddress", "addressLocality": "Amsterdam", "addressCountry": "NL" },
+        "alumniOf": { "@type": "CollegeOrUniversity", "name": "The University of Texas at Austin" },
+        "worksFor": { "@type": "Organization", "name": "Edge Impulse / Qualcomm" },
+        "sameAs": [
+          "https://www.linkedin.com/in/jennyplunkett",
+          "https://github.com/yennster",
+          "https://mastodon.world/@jennyp",
+          "https://www.jennyspeelman.dev/",
+          "https://www.oreilly.com/library/view/ai-at-the/9781098120191/"
+        ]
+      },
+      {
+        "@type": "Book",
+        "@id": "https://jennyspeelman.me/#book-ai-at-the-edge",
+        "name": "AI at the Edge",
+        "alternateName": "AI at the Edge: Solving Real World Problems with Embedded Machine Learning",
+        "bookFormat": "https://schema.org/Paperback",
+        "isbn": "9781098120191",
+        "inLanguage": "en",
+        "datePublished": "2023-01-10",
+        "url": "https://www.oreilly.com/library/view/ai-at-the/9781098120191/",
+        "image": "https://jennyspeelman.me/images/book-cover-440.jpg",
+        "author": [
+          { "@type": "Person", "name": "Daniel Situnayake" },
+          { "@id": "https://jennyspeelman.me/#person" }
+        ],
+        "publisher": { "@type": "Organization", "name": "O'Reilly Media" },
+        "about": ["Edge AI", "TinyML", "Embedded Machine Learning", "Microcontrollers"]
+      },
+      {
+        "@type": "ScholarlyArticle",
+        "@id": "https://arxiv.org/abs/2212.03332",
+        "name": "Edge Impulse: An MLOps Platform for Tiny Machine Learning",
+        "headline": "Edge Impulse: An MLOps Platform for Tiny Machine Learning",
+        "datePublished": "2022-12-06",
+        "url": "https://arxiv.org/abs/2212.03332",
+        "publisher": { "@type": "Organization", "name": "arXiv, Cornell University" },
+        "author": { "@id": "https://jennyspeelman.me/#person" }
+      }
+    ]
+  }
+  </script>
+
+  <!-- Privacy-friendly analytics by Plausible — cookieless, no banner required. -->
+  <script async src="https://plausible.io/js/pa--HY2cpyqkKJuL5luJgoFc.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init({ hashBasedRouting: true })
+  </script>
+
+  <script src="assets/js/os.js" defer></script>
+</head>
+<body>
+
+<!-- ======================================================================
+     Icon sprite — all original pixel art, drawn on a 32×32 (or 16×16) grid.
+     ====================================================================== -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-chip" viewBox="0 0 32 32"><path fill="#7d1747" d="M10 3h2v4h-2zM15 3h2v4h-2zM20 3h2v4h-2zM10 25h2v4h-2zM15 25h2v4h-2zM20 25h2v4h-2zM3 10h4v2H3zM3 15h4v2H3zM3 20h4v2H3zM25 10h4v2h-4zM25 15h4v2h-4zM25 20h4v2h-4z"/><path fill="#000" d="M6 6h20v20H6z"/><path fill="#e0115f" d="M7 7h18v18H7z"/><path fill="#ff8cc6" d="M7 7h18v2H7zM7 7h2v18H7z"/><path fill="#fff" d="M12 12h3v1h-3zM17 12h3v1h-3zM11 13h10v2H11zM12 15h8v1h-8zM13 16h6v1h-6zM14 17h4v1h-4zM15 18h2v1h-2z"/></symbol>
+    <symbol id="i-computer" viewBox="0 0 32 32"><path fill="#000" d="M3 2h26v21H3z"/><path fill="#efe4e8" d="M4 3h24v19H4z"/><path fill="#9d7e8a" d="M27 3h1v19H4v-1h23z"/><path fill="#000" d="M6 5h20v14H6z"/><path fill="#e2669d" d="M7 6h18v12H7z"/><path fill="#ffc2dc" d="M8 7h7v2H8zM8 10h4v1H8z"/><path fill="#000" d="M10 23h12v3H10zM5 26h22v4H5z"/><path fill="#9d7e8a" d="M11 23h10v2H11z"/><path fill="#efe4e8" d="M6 27h20v2H6z"/><path fill="#7d1747" d="M21 28h3v1h-3z"/></symbol>
+    <symbol id="i-space" viewBox="0 0 32 32"><path fill="#000" d="M2 4h28v24H2z"/><path fill="#fff" d="M3 5h26v22H3z"/><path fill="#003399" d="M3 5h26v5H3z"/><path fill="#fff" d="M5 7h7v1H5z"/><path fill="#ff8cc6" d="M24 6h1v1h-1zM26 6h1v1h-1zM24 7h3v1h-3zM25 8h1v1h-1z"/><path fill="#ffd0e4" d="M5 12h10v13H5z"/><path fill="#7d1747" d="M8 14h4v4H8zM7 19h6v6H7z"/><path fill="#e0115f" d="M17 13h10v2H17z"/><path fill="#b9a3ad" d="M17 17h8v1h-8zM17 20h10v1H17zM17 23h7v1h-7z"/></symbol>
+    <symbol id="i-notepad" viewBox="0 0 32 32"><path fill="#000" d="M6 4h20v26H6z"/><path fill="#fff" d="M7 5h18v24H7z"/><path fill="#7fb2f0" d="M7 5h18v3H7z"/><path fill="#555" d="M9 2h2v5H9zM13 2h2v5h-2zM17 2h2v5h-2zM21 2h2v5h-2z"/><path fill="#a6b7cc" d="M9 11h14v1H9zM9 14h14v1H9zM9 17h14v1H9zM9 20h14v1H9zM9 23h10v1H9z"/></symbol>
+    <symbol id="i-folder" viewBox="0 0 32 32"><path fill="#000" d="M2 7h11l2 2h15v20H2z"/><path fill="#e8b84a" d="M3 8h9l2 2h15v18H3z"/><path fill="#000" d="M3 12h26v1H3z"/><path fill="#ffd977" d="M3 13h26v15H3z"/><path fill="#fff3c4" d="M3 13h26v1H3zM3 13h1v15H3z"/></symbol>
+    <symbol id="i-media" viewBox="0 0 32 32"><path fill="#000" d="M3 5h26v22H3z"/><path fill="#3a1528" d="M4 6h24v20H4z"/><path fill="#efe4e8" d="M5 7h2v2H5zM5 11h2v2H5zM5 15h2v2H5zM5 19h2v2H5zM5 23h2v2H5zM25 7h2v2h-2zM25 11h2v2h-2zM25 15h2v2h-2zM25 19h2v2h-2zM25 23h2v2h-2z"/><path fill="#ff4fa0" d="M12 10h2v12h-2zM14 11h2v10h-2zM16 12h2v8h-2zM18 13h2v6h-2zM20 15h1v2h-1z"/></symbol>
+    <symbol id="i-book" viewBox="0 0 32 32"><path fill="#000" d="M6 3h21v27H6z"/><path fill="#c2185b" d="M7 4h19v25H7z"/><path fill="#7d1747" d="M7 4h3v25H7z"/><path fill="#fff" d="M13 8h10v2H13zM13 12h8v1h-8zM26 5h1v24h-1z"/><path fill="#ffd0e4" d="M13 22h6v1h-6z"/><path fill="#ffd977" d="M15 15h1v1h1v1h-1v1h-1v-1h-1v-1h1z"/></symbol>
+    <symbol id="i-globe" viewBox="0 0 32 32"><circle cx="15" cy="17" r="12" fill="#2f6fd0" stroke="#000"/><path fill="#47b85a" d="M9 9h5v3h-2v3H9v2H6v-4h2v-3h1zM16 14h6v3h3v4h-2v3h-3v2h-2v-5h-2zM10 20h3v4h-2v-2h-1z"/><path fill="#9cc8ff" d="M10 7h4v1h-4zM7 10h2v1H7z"/><path fill="#ff4fa0" d="M26 1h1v3h3v1h-3v3h-1V5h-3V4h3z"/></symbol>
+    <symbol id="i-mail" viewBox="0 0 32 32"><path fill="#000" d="M2 7h28v19H2z"/><path fill="#fff" d="M3 8h26v17H3z"/><path d="M3.5 8.5 16 17.5l12.5-9" fill="none" stroke="#000"/><path fill="#d8c7cf" d="M3 24h26v1H3z"/><path fill="#e0115f" d="M13 18h2v1h-2zM16 18h2v1h-2zM13 19h5v1h-5zM14 20h3v1h-3zM15 21h1v1h-1z"/></symbol>
+    <symbol id="i-recycle" viewBox="0 0 32 32"><path fill="#ff8cc6" d="M13 2h6v5h-6z"/><path fill="#000" d="M7 6h18v3H7zM8 9h16l-2 21H10z"/><path fill="#e6eef0" d="M8 7h16v1H8z"/><path fill="#c3cfd3" d="M9 10h14l-2 19H11z"/><path fill="#8a989c" d="M12 12h1v15h-1zM16 12h1v15h-1zM20 12h1v15h-1z"/></symbol>
+    <symbol id="i-display" viewBox="0 0 32 32"><path fill="#000" d="M3 3h26v19H3z"/><path fill="#efe4e8" d="M4 4h24v17H4z"/><path fill="#000" d="M6 6h20v13H6z"/><path fill="#e0115f" d="M7 7h4v11H7z"/><path fill="#ff8cc6" d="M11 7h4v11h-4z"/><path fill="#ffd977" d="M15 7h4v11h-4z"/><path fill="#7fb2f0" d="M19 7h6v11h-6z"/><path fill="#000" d="M11 22h10v3H11zM7 25h18v4H7z"/><path fill="#efe4e8" d="M8 26h16v2H8z"/></symbol>
+    <symbol id="i-find" viewBox="0 0 32 32"><path fill="#000" d="M4 2h16v22H4z"/><path fill="#fff" d="M5 3h14v20H5z"/><path fill="#a6b7cc" d="M7 6h10v1H7zM7 9h8v1H7zM7 12h10v1H7z"/><circle cx="18" cy="18" r="6" fill="#cfe6ff" stroke="#000" stroke-width="2"/><path d="M22.5 22.5 29 29" stroke="#7d1747" stroke-width="3"/></symbol>
+    <symbol id="i-help" viewBox="0 0 32 32"><path fill="#000" d="M5 4h22v24H5z"/><path fill="#ffd977" d="M6 5h20v22H6z"/><path fill="#000" d="M12 8h8v1h2v6h-2v1h-2v2h-4v-3h2v-1h2v-3h-4v2h-4V9h2zM14 20h4v4h-4z"/></symbol>
+    <symbol id="i-run" viewBox="0 0 32 32"><path fill="#000" d="M3 6h24v20H3z"/><path fill="#efe4e8" d="M4 7h22v18H4z"/><path fill="#7d1747" d="M4 7h22v3H4z"/><path fill="#fff" d="M7 14h14v6H7z"/><path fill="#000" d="M7 14h14v1H7zM7 14h1v6H7z"/><path fill="#e0115f" stroke="#000" d="M22.5 17.5h3v-3l5 5-5 5v-3h-3z"/></symbol>
+    <symbol id="i-shutdown" viewBox="0 0 32 32"><path fill="#000" d="M4 4h24v24H4z"/><path fill="#efe4e8" d="M5 5h22v22H5z"/><circle cx="16" cy="17" r="7" fill="none" stroke="#c2185b" stroke-width="3"/><path fill="#efe4e8" d="M13 8h6v6h-6z"/><path fill="#c2185b" d="M14.5 7h3v10h-3z"/></symbol>
+    <symbol id="i-plainview" viewBox="0 0 32 32"><path fill="#000" d="M5 3h22v26H5z"/><path fill="#fff" d="M6 4h20v24H6z"/><path fill="#000" d="M9 8h14v2H9z"/><path fill="#a6b7cc" d="M9 13h14v1H9zM9 16h14v1H9zM9 19h14v1H9zM9 22h9v1H9z"/></symbol>
+    <symbol id="i-paper" viewBox="0 0 32 32"><path fill="#000" d="M6 2h15l6 6v22H6z"/><path fill="#fff" d="M7 3h13v6h6v20H7z"/><path fill="#d8c7cf" d="M20 3l6 6h-6z"/><path fill="#b31b1b" d="M7 12h19v5H7z"/><path fill="#fff" d="M9 13h1v3H9zM11 13h2v1h-2zM11 15h2v1h-2zM14 13h1v3h-1zM16 13h2v3h-2zM19 13h1v1h1v1h-1v1h-1z"/><path fill="#a6b7cc" d="M9 20h14v1H9zM9 23h14v1H9zM9 26h9v1H9z"/></symbol>
+    <symbol id="i-doc" viewBox="0 0 32 32"><path fill="#000" d="M6 2h14l7 7v21H6z"/><path fill="#fff" d="M7 3h12v7h7v19H7z"/><path fill="#d8c7cf" d="M20 4l5 5h-5z"/><path fill="#7fb2f0" d="M9 13h14v2H9zM9 18h14v2H9zM9 23h10v2H9z"/></symbol>
+    <symbol id="i-manual" viewBox="0 0 32 32"><path fill="#000" d="M6 3h21v27H6z"/><path fill="#2f6fd0" d="M7 4h19v25H7z"/><path fill="#1c4596" d="M7 4h3v25H7z"/><path fill="#fff" d="M26 5h1v24h-1zM14 9h7v1h2v5h-2v1h-2v2h-3v-3h2v-1h2v-3h-3v2h-3v-3h1z M15 20h3v3h-3z"/></symbol>
+    <symbol id="i-forum" viewBox="0 0 32 32"><path fill="#000" d="M2 5h28v18H13l-7 6v-6H2z"/><path fill="#fff" d="M3 6h26v16H12l-5 4v-4H3z"/><path fill="#ff8cc6" d="M6 10h20v2H6zM6 15h14v2H6z"/></symbol>
+    <symbol id="i-fanficly" viewBox="0 0 32 32"><path fill="#000" d="M2 8h13l1 1 1-1h13v19H17l-1 1-1-1H2z"/><path fill="#fff" d="M3 9h12v17H3zM17 9h12v17H17z"/><path fill="#ffd0e4" d="M15 9h2v18h-2z"/><path fill="#a6b7cc" d="M5 12h8v1H5zM5 15h8v1H5zM5 18h8v1H5zM5 21h6v1H5z"/><path fill="#e0115f" d="M19 13h3v1h-3zM23 13h3v1h-3zM19 14h7v2h-7zM20 16h5v1h-5zM21 17h3v1h-3zM22 18h1v1h-1z"/></symbol>
+    <symbol id="i-diff" viewBox="0 0 32 32"><path fill="#000" d="M2 4h13v24H2zM17 4h13v24H17z"/><path fill="#fff" d="M3 5h11v22H3zM18 5h11v22H18z"/><path fill="#a6b7cc" d="M5 8h7v1H5zM20 8h7v1h-7zM5 20h7v1H5zM20 20h7v1h-7zM5 23h5v1H5zM20 23h5v1h-5z"/><path fill="#ffb3b3" d="M4 11h9v4H4z"/><path fill="#e01b24" d="M6 12.5h5v1H6z"/><path fill="#b7f0c0" d="M19 11h9v6h-9z"/><path fill="#1a8f35" d="M21 13h5v2h-5zM22.5 11.5h2v5h-2z"/></symbol>
+    <symbol id="i-cube" viewBox="0 0 32 32"><path d="M16 3 28 9v14l-12 6L4 23V9z" fill="#000"/><path d="M16 5 26 10 16 15 6 10z" fill="#ffb3d6"/><path d="M5 11l10 5v11L5 22z" fill="#c2185b"/><path d="M17 16l10-5v11l-10 5z" fill="#7d1747"/><path fill="#fff" d="M24 1h1v2h2v1h-2v2h-1V4h-2V3h2z"/></symbol>
+    <symbol id="i-bulb" viewBox="0 0 32 32"><path fill="#000" d="M11 3h10v2h2v2h1v8h-1v2h-2v3H11v-3H9v-2H8V7h1V5h2z"/><path fill="#fff27a" d="M12 4h8v2h2v2h1v6h-1v2h-2v3h-8v-3h-2v-2H9V8h1V6h2z"/><path fill="#fff" d="M12 7h2v1h-2zM11 8h1v3h-1z"/><path fill="#000" d="M11 21h10v2H11zM12 24h8v2h-8zM14 27h4v2h-4z"/><path fill="#9d7e8a" d="M12 22h8v1h-8zM13 25h6v1h-6z"/><path fill="#ff4fa0" d="M2 9h4v1H2z"/><path fill="#4fb3ff" d="M26 9h4v1h-4z"/><path fill="#6be07a" d="M4 3h1v1h1v1H5V4H4z"/><path fill="#a46bff" d="M27 3h1v1h-1v1h-1V4h1z"/><path fill="#ffb84f" d="M3 15h3v1H3zM26 15h3v1h-3z"/></symbol>
+    <symbol id="i-tag" viewBox="0 0 32 32"><path d="M3 4h13l13 13-12 12L3 15z" fill="#000"/><path d="M4 5h11.5l12 12L17 27.5 4 14.5z" fill="#ffd977"/><circle cx="10" cy="10" r="2.5" fill="#fff" stroke="#000"/><path d="M13 17l6-6M16 20l6-6" stroke="#c2185b" stroke-width="2"/></symbol>
+    <symbol id="i-sheet" viewBox="0 0 32 32"><path fill="#000" d="M3 4h26v24H3z"/><path fill="#fff" d="M4 5h24v22H4z"/><path fill="#1a8f35" d="M4 5h24v4H4z"/><path fill="#b9c7bd" d="M4 13h24v1H4zM4 18h24v1H4zM4 23h24v1H4zM11 9h1v18h-1zM19 9h1v18h-1z"/><path d="M6 22l5-6 5 3 9-8" fill="none" stroke="#e0115f" stroke-width="2"/></symbol>
+    <symbol id="i-chart" viewBox="0 0 32 32"><path fill="#000" d="M3 4h26v24H3z"/><path fill="#fff" d="M4 5h24v22H4z"/><path fill="#000" d="M7 8h1v16h18v1H7z"/><path fill="#7fb2f0" d="M10 17h3v7h-3z"/><path fill="#ff8cc6" d="M15 12h3v12h-3z"/><path fill="#ffd977" d="M20 15h3v9h-3z"/><path d="M9 14l5-4 5 3 6-6" fill="none" stroke="#c2185b" stroke-width="1.5"/></symbol>
+    <symbol id="i-clapper" viewBox="0 0 32 32"><path fill="#000" d="M3 12h26v16H3z"/><path fill="#3a1528" d="M4 13h24v14H4z"/><path d="M3 5l24-3 1 7-24 3z" fill="#000"/><path d="M4.5 6.2 26.2 3.4l.6 4.6-21.7 2.8z" fill="#fff"/><path d="M8 5.8l3 4M14 5l3 4M20 4.2l3 4" stroke="#000" stroke-width="2"/><path fill="#ff4fa0" d="M7 17h18v1H7zM7 21h12v1H7z"/></symbol>
+    <symbol id="i-code" viewBox="0 0 32 32"><path fill="#000" d="M2 5h28v22H2z"/><path fill="#efe4e8" d="M3 6h26v3H3z"/><path fill="#1d0a14" d="M3 9h26v17H3z"/><path fill="#e0115f" d="M4 7h1v1H4zM6 7h1v1H6z"/><path fill="#7cff9b" d="M6 12h2v1h1v1h1v1H9v1H8v1H6v-1h1v-1h1v-1H7v-1H6zM12 17h6v1h-6z"/></symbol>
+    <symbol id="i-error" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#e01b24" stroke="#000"/><path d="M11 11l10 10M21 11 11 21" stroke="#fff" stroke-width="3"/></symbol>
+    <symbol id="i-info" viewBox="0 0 32 32"><circle cx="16" cy="16" r="13" fill="#fff" stroke="#000"/><path fill="#1c4fc4" d="M14 7h4v4h-4zM12 13h6v9h2v3h-8v-3h2v-6h-2z"/></symbol>
+    <symbol id="i-warning" viewBox="0 0 32 32"><path d="M16 3 30 28H2z" fill="#ffd400" stroke="#000"/><path fill="#000" d="M14 11h4v9h-4zM14 22h4v3h-4z"/></symbol>
+    <symbol id="i-speaker" viewBox="0 0 16 16"><path fill="#000" d="M1 5h3l4-4h1v14H8l-4-4H1z"/><path fill="#efe4e8" d="M2 6h2v4H2z"/><path fill="#000" d="M11 5h1v6h-1zM13 3h1v10h-1z"/></symbol>
+    <symbol id="i-speaker-off" viewBox="0 0 16 16"><path fill="#000" d="M1 5h3l4-4h1v14H8l-4-4H1z"/><path fill="#efe4e8" d="M2 6h2v4H2z"/><path d="M10.5 5.5l5 5M15.5 5.5l-5 5" stroke="#e01b24" stroke-width="1.6"/></symbol>
+    <symbol id="i-back" viewBox="0 0 16 16"><path fill="#1a8f35" stroke="#000" d="M1.5 8 7.5 2.5v3h7v5h-7v3z"/></symbol>
+    <symbol id="i-forward" viewBox="0 0 16 16"><path fill="#1a8f35" stroke="#000" d="M14.5 8 8.5 2.5v3h-7v5h7v3z"/></symbol>
+    <symbol id="i-up" viewBox="0 0 16 16"><path fill="#ffd977" stroke="#000" d="M1.5 6.5h5l1 1h7v7h-13z"/><path fill="#1a8f35" stroke="#000" d="M10 1.5 13.5 5h-2v4h-3V5h-2z"/></symbol>
+    <symbol id="i-home" viewBox="0 0 16 16"><path fill="#fff" stroke="#000" d="M3.5 7.5v7h9v-7"/><path fill="#c2185b" stroke="#000" d="M8 1.5l7 6.5H1z"/><path fill="#7d1747" d="M7 10h2v4H7z"/></symbol>
+    <symbol id="i-refresh" viewBox="0 0 16 16"><path d="M13 8a5 5 0 1 1-1.5-3.5" fill="none" stroke="#1a8f35" stroke-width="2"/><path fill="#1a8f35" d="M10 1h5v5z"/></symbol>
+    <symbol id="i-stop" viewBox="0 0 16 16"><path fill="#e01b24" stroke="#000" d="M5 1.5h6L14.5 5v6L11 14.5H5L1.5 11V5z"/><path fill="#fff" d="M4 7h8v2H4z"/></symbol>
+    <symbol id="i-send" viewBox="0 0 16 16"><path fill="#fff" stroke="#000" d="M1.5 7.5 14.5 1.5l-3 13-3.5-4z"/><path fill="#ff8cc6" d="M8 10.5 14 2 6 9z"/></symbol>
+    <symbol id="i-print" viewBox="0 0 16 16"><path fill="#fff" stroke="#000" d="M4.5 1.5h7v4h-7z"/><path fill="#d8c7cf" stroke="#000" d="M1.5 5.5h13v6h-13z"/><path fill="#fff" stroke="#000" d="M4.5 9.5h7v5h-7z"/></symbol>
+    <symbol id="i-play" viewBox="0 0 16 16"><path fill="currentColor" d="M4 2l10 6-10 6z"/></symbol>
+    <symbol id="i-prev" viewBox="0 0 16 16"><path fill="currentColor" d="M2 2h2v12H2zM14 2v12L5 8z"/></symbol>
+    <symbol id="i-next" viewBox="0 0 16 16"><path fill="currentColor" d="M12 2h2v12h-2zM2 2v12l9-6z"/></symbol>
+    <symbol id="i-star" viewBox="0 0 16 16"><path fill="#ffd400" stroke="#000" d="M8 1l2 4.5 5 .5-3.8 3.3L12.4 14 8 11.4 3.6 14l1.2-4.7L1 6l5-.5z"/></symbol>
+    <symbol id="i-addfriend" viewBox="0 0 16 16"><circle cx="6" cy="5" r="3" fill="#ffc9a8" stroke="#000"/><path fill="#c2185b" stroke="#000" d="M1.5 14.5c0-4 2-5.5 4.5-5.5s4.5 1.5 4.5 5.5z"/><path fill="#1a8f35" d="M12 4h2v3h2v2h-2v3h-2V9h-2V7h2z"/></symbol>
+    <symbol id="i-block" viewBox="0 0 16 16"><circle cx="8" cy="8" r="6" fill="#fff" stroke="#e01b24" stroke-width="2"/><path d="M4 12l8-8" stroke="#e01b24" stroke-width="2"/></symbol>
+    <symbol id="i-online" viewBox="0 0 16 16"><circle cx="8" cy="4" r="3" fill="#ff8a00"/><path fill="#ff8a00" d="M3 15c0-5 2-7 5-7s5 2 5 7z"/></symbol>
+  </defs>
+</svg>
+
+<a class="skip-link" href="#profile">Skip to Jenny's profile</a>
+
+<div class="plain-banner" role="region" aria-label="View mode">
+  <span>You're in plain view — same content, no windows.</span>
+  <button class="btn" type="button" data-action="desktop-mode">Back to the Jenny 98 desktop</button>
+</div>
+
+<!-- ======================================================================
+     Boot sequence (first visit only; any key or click skips ahead)
+     ====================================================================== -->
+<div id="boot" class="js-only" role="dialog" aria-label="Starting Jenny 98">
+  <div class="bios" id="bios" aria-hidden="true"></div>
+  <button class="boot-skip" type="button" id="bootSkip">Skip intro [Esc]</button>
+</div>
+
+<main id="desktop" aria-label="Jenny 98 desktop">
+  <h1 class="sr-only">Jenny Speelman — Staff Engineer, Developer Relations</h1>
+
+  <ul class="desktop-icons" aria-label="Desktop">
+    <li><a class="icon" href="#computer" data-open="computer"><svg class="ico" aria-hidden="true"><use href="#i-computer"/></svg><span class="icon-label">My Computer</span></a></li>
+    <li><a class="icon" href="#profile" data-open="profile"><svg class="ico" aria-hidden="true"><use href="#i-space"/></svg><span class="icon-label">jennyspeelman<wbr>.me</span></a></li>
+    <li><a class="icon" href="#resume" data-open="resume"><svg class="ico" aria-hidden="true"><use href="#i-notepad"/></svg><span class="icon-label">resume.txt</span></a></li>
+    <li><a class="icon" href="#writing" data-open="writing"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span class="icon-label">Writing</span></a></li>
+    <li><a class="icon" href="#talks" data-open="talks"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span class="icon-label">Talks</span></a></li>
+    <li><a class="icon" href="#book" data-open="book"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg><span class="icon-label">AI at the Edge</span></a></li>
+    <li><a class="icon" href="#apps" data-open="apps"><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg><span class="icon-label">AI Apps</span></a></li>
+    <li><a class="icon" href="#contact" data-open="contact"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg><span class="icon-label">Mail Jenny</span></a></li>
+    <li><a class="icon" href="#recycle" data-open="recycle"><svg class="ico" aria-hidden="true"><use href="#i-recycle"/></svg><span class="icon-label">Recycle Bin</span></a></li>
+  </ul>
+
+  <div id="windows">
+
+  <!-- ====================================================================
+       jennyspeelman.me — the profile (a MySpace-style homage)
+       ==================================================================== -->
+  <section class="window" id="profile" data-app="profile" data-icon="i-space" data-task="jennyspeelman.me" aria-labelledby="t-profile">
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-space"/></svg>
+      <h2 class="title-text" id="t-profile" tabindex="-1">jennyspeelman.me | Jenny Speelman's Profile</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="window-body">
+      <div class="pane space">
+        <div class="ms-top">
+          <div class="ms-top-inner">
+            <span class="ms-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-chip"/></svg>jennyspeelman.me <small>a place for edge AI friends</small></span>
+            <form class="ms-search js-only" role="search" data-action="ms-search">
+              <label for="msSearch">Search</label>
+              <input id="msSearch" type="search" placeholder="talks, blogs, apps…" />
+              <button type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+        <nav class="ms-nav" aria-label="Profile">
+          <ul>
+            <li><a href="#profile" data-open="profile">Home</a></li>
+            <li><a href="#writing" data-open="writing">Blog</a></li>
+            <li><a href="#talks" data-open="talks">Videos</a></li>
+            <li><a href="#book" data-open="book">Book</a></li>
+            <li><a href="#apps" data-open="apps">Apps</a></li>
+            <li><a href="#resume" data-open="resume">Resume</a></li>
+            <li><a href="#contact" data-open="contact">Mail</a></li>
+          </ul>
+        </nav>
+        <div class="marquee" aria-hidden="true"><span>★ welcome 2 my profile!! ★ thanks 4 the add ★ now with 100% more edge AI ★ AI at the Edge is out now from O'Reilly ★ 50+ talks &amp; counting ★ don't forget 2 leave a comment ★</span></div>
+
+        <div class="ms-page">
+          <!-- Left column -->
+          <div class="ms-col">
+            <div class="ms-card">
+              <div class="ms-name"><span class="glitter">Jenny Speelman</span></div>
+              <div class="ms-intro">
+                <div class="ms-photo">
+                  <picture>
+                    <source type="image/webp" srcset="images/jenny-340.webp 1x, images/jenny-680.webp 2x" />
+                    <img src="images/jenny-340.jpg" srcset="images/jenny-340.jpg 1x, images/jenny-680.jpg 2x" width="340" height="340" alt="Jenny Speelman" />
+                  </picture>
+                </div>
+                <div>
+                  <p class="ms-quote">"Building intelligent things at the edge ✨"</p>
+                  <ul class="ms-facts">
+                    <li>Staff Engineer, DevRel</li>
+                    <li>Edge Impulse / Qualcomm</li>
+                    <li>Amsterdam, Netherlands</li>
+                    <li>Last Login: <span data-today>2026</span></li>
+                  </ul>
+                  <p class="online"><svg viewBox="0 0 16 16" aria-hidden="true"><use href="#i-online"/></svg>Online Now!</p>
+                </div>
+              </div>
+              <p class="ms-mood"><b>Mood:</b> quantized (int8) 🤖</p>
+              <p class="ms-viewmy"><b>View My:</b> <a href="#talks" data-open="talks">Videos</a> | <a href="#book" data-open="book">Book</a> | <a href="#apps" data-open="apps">Apps</a></p>
+            </div>
+
+            <div class="ms-card ms-card--flush">
+              <h3 class="ms-boxhead">Contacting Jenny</h3>
+              <div class="ms-contact">
+                <a href="#contact" data-open="contact"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Send Message</a>
+                <a href="https://www.linkedin.com/in/jennyplunkett" target="_blank" rel="noopener me"><svg class="ico" aria-hidden="true"><use href="#i-addfriend"/></svg>Add to Friends</a>
+                <a href="https://mastodon.world/@jennyp" target="_blank" rel="noopener me"><svg class="ico" aria-hidden="true"><use href="#i-forum"/></svg>Instant Message</a>
+                <a href="https://github.com/yennster" target="_blank" rel="noopener me"><svg class="ico" aria-hidden="true"><use href="#i-star"/></svg>Add to Favorites</a>
+                <button type="button" class="js-only" data-action="share"><svg class="ico" aria-hidden="true"><use href="#i-send"/></svg>Forward to Friend</button>
+                <button type="button" class="js-only" data-action="block"><svg class="ico" aria-hidden="true"><use href="#i-block"/></svg>Block User</button>
+              </div>
+            </div>
+
+            <div class="ms-card ms-card--flush">
+              <p class="ms-url"><b>My URL:</b> <a href="https://jennyspeelman.me/">https://jennyspeelman.me/</a></p>
+            </div>
+
+            <div class="ms-card ms-card--flush">
+              <h3 class="ms-boxhead">Jenny's Interests</h3>
+              <table class="ms-table">
+                <tr><th scope="row">General</th><td>Edge AI, TinyML, embedded ML, sensors &amp; dev boards, synthetic data, apps built with AI, making hard things approachable</td></tr>
+                <tr><th scope="row">Books</th><td><a href="#book" data-open="book">AI at the Edge</a> (O'Reilly). I may be biased.</td></tr>
+              </table>
+            </div>
+
+            <div class="ms-card ms-card--flush">
+              <h3 class="ms-boxhead">Jenny's Details</h3>
+              <table class="ms-table">
+                <tr><th scope="row">Here for</th><td>Networking, speaking gigs, collaborations</td></tr>
+                <tr><th scope="row">Lives in</th><td>Amsterdam, NL (formerly Austin, TX)</td></tr>
+                <tr><th scope="row">Occupation</th><td>Staff Engineer, Developer Relations</td></tr>
+                <tr><th scope="row">Company</th><td>Edge Impulse / Qualcomm</td></tr>
+                <tr><th scope="row">Education</th><td>The University of Texas at Austin, B.S. Electrical &amp; Computer Engineering</td></tr>
+              </table>
+            </div>
+          </div>
+
+          <!-- Right column -->
+          <div class="ms-col">
+            <p class="ms-network">Jenny is in your extended network</p>
+
+            <div class="ms-card ms-card--flush">
+              <h3 class="ms-section-title">Jenny's Latest Blog Entries <small><a href="#writing" data-open="writing">[View Blog]</a></small></h3>
+              <div class="ms-section-body">
+                <ul class="ms-blog-list">
+                  <li><a href="https://www.edgeimpulse.com/blog/how-to-use-usd-assets-for-any-edge-ai-use-case-with-nvidia-omniverse/" target="_blank" rel="noopener">How to Use USD Assets for Any Edge AI Use Case with NVIDIA Omniverse</a></li>
+                  <li><a href="https://edgeimpulse.com/blog/impulse-experiments-revolutionize-your-ai-project-workflow/" target="_blank" rel="noopener">Impulse Experiments: Revolutionize Your AI Project Workflow</a></li>
+                  <li><a href="https://www.edgeimpulse.com/blog/patchcore-boosts-visual-anomaly-detection-in-edge-impulse/" target="_blank" rel="noopener">PatchCore Boosts Visual Anomaly Detection in Edge Impulse</a></li>
+                  <li><a href="https://www.edgeimpulse.com/blog/unlock-greater-data-flexibility-ingest-tabular-data/" target="_blank" rel="noopener">Unlock Greater Data Flexibility: Ingest Tabular Data</a></li>
+                  <li><a href="https://developer.nvidia.com/blog/how-to-train-an-object-detection-model-for-visual-inspection-with-synthetic-data/" target="_blank" rel="noopener">How to Train an Object Detection Model for Visual Inspection with Synthetic Data</a></li>
+                </ul>
+                <p class="ms-more">(<a href="#writing" data-open="writing">View All Blog Entries</a>)</p>
+              </div>
+            </div>
+
+            <div class="ms-card ms-card--flush">
+              <h3 class="ms-section-title">Jenny's Blurbs</h3>
+              <div class="ms-section-body">
+                <h4 class="ms-blurb-h">About me:</h4>
+                <p>I'm a Staff Engineer in Developer Relations at Edge Impulse (now part of Qualcomm), based in Amsterdam. For over five years I've helped developers, researchers, and companies take machine learning from the cloud to the constraint: tiny sensors, microcontrollers, and the devices that actually touch the physical world.</p>
+                <p>Before Edge Impulse I spent three years at Arm working on Mbed OS and the Pelion IoT platform, and I studied Electrical &amp; Computer Engineering at The University of Texas at Austin. I co-wrote <a href="#book" data-open="book"><i>AI at the Edge</i></a> for O'Reilly, and these days I also build <a href="#apps" data-open="apps">apps with AI</a>.</p>
+                <h4 class="ms-blurb-h">Who I'd like to meet:</h4>
+                <p>Developers, researchers, and teams taking ML from the cloud to the constraint. Conference and webinar organizers who need someone to make edge AI make sense. Anyone with a weird sensor and a good idea.</p>
+              </div>
+            </div>
+
+            <div class="ms-card ms-card--flush">
+              <h3 class="ms-section-title">Jenny's Top 8 <small><a href="#apps" data-open="apps">[View All]</a></small></h3>
+              <div class="ms-section-body">
+                <p><b>Jenny has <span style="color:#e0115f">11</span> friends.</b></p>
+                <ul class="top8" role="list" style="list-style:none;padding:0;margin-bottom:0">
+                  <li><a class="friend" href="#book" data-open="book"><span class="friend-pic"><img src="images/book-cover-220.webp" width="220" height="289" alt="" loading="lazy" /></span><span class="friend-name">AI at the Edge</span></a></li>
+                  <li><a class="friend" href="https://arxiv.org/abs/2212.03332" target="_blank" rel="noopener"><span class="friend-pic"><span class="fp-6"><svg class="ico" aria-hidden="true"><use href="#i-paper"/></svg></span></span><span class="friend-name">MLOps Paper</span></a></li>
+                  <li><a class="friend" href="https://apps.apple.com/us/app/fanficly-ao3-fanfiction/id6775897153" target="_blank" rel="noopener"><span class="friend-pic"><span class="fp-1"><svg class="ico" aria-hidden="true"><use href="#i-fanficly"/></svg></span></span><span class="friend-name">Fanficly</span></a></li>
+                  <li><a class="friend" href="https://differentialis.app" target="_blank" rel="noopener"><span class="friend-pic"><span class="fp-4"><svg class="ico" aria-hidden="true"><use href="#i-diff"/></svg></span></span><span class="friend-name">Differentialis</span></a></li>
+                  <li><a class="friend" href="https://synthetic.jennyspeelman.dev" target="_blank" rel="noopener"><span class="friend-pic"><span class="fp-5"><svg class="ico" aria-hidden="true"><use href="#i-cube"/></svg></span></span><span class="friend-name">Synthetic Data Studio</span></a></li>
+                  <li><a class="friend" href="https://github.com/yennster/party-house" target="_blank" rel="noopener"><span class="friend-pic"><span class="fp-3"><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg></span></span><span class="friend-name">Party House</span></a></li>
+                  <li><a class="friend" href="https://label.jennyspeelman.dev" target="_blank" rel="noopener"><span class="friend-pic"><span class="fp-7"><svg class="ico" aria-hidden="true"><use href="#i-tag"/></svg></span></span><span class="friend-name">EI Label Studio</span></a></li>
+                  <li><a class="friend" href="#apps" data-open="apps"><span class="friend-pic"><span class="fp-2"><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg></span></span><span class="friend-name">jennyspeelman.dev</span></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="ms-card ms-card--flush">
+              <h3 class="ms-section-title">Jenny's Friends Comments</h3>
+              <div class="ms-section-body">
+                <p class="ms-comments-empty">Displaying <b>0</b> of <b>0</b> comments. The guestbook got deleted for spam back in 2007 (check the Recycle Bin). (<a href="#contact" data-open="contact" data-subject="Comment on your profile">Add Comment</a>)</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <footer class="ms-footer">
+          <div class="badges" aria-hidden="true">
+            <span class="badge88 b1">Jenny 98<em>ready ✦</em></span>
+            <span class="badge88 b2">Powered by<em>Edge AI</em></span>
+            <span class="badge88 b3">&gt;_ no<em>cookies</em></span>
+            <span class="badge88 b4">Best viewed<em>800×600</em></span>
+            <span class="badge88 b5">Under<em>construction</em></span>
+          </div>
+          <p class="js-only">You are visitor # <span class="counter" id="visitCounter" aria-hidden="true"></span><span class="sr-only" id="visitCounterText"></span> (on this computer, anyway)</p>
+          <p>© 2026 Jenny Speelman · Amsterdam, Netherlands · This profile is an affectionate MySpace homage and isn't affiliated with MySpace.</p>
+        </footer>
+      </div>
+    </div>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       resume.txt — Notepad
+       ==================================================================== -->
+  <section class="window" id="resume" data-app="resume" data-icon="i-notepad" data-task="resume.txt - Notepad" aria-labelledby="t-resume" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-notepad"/></svg>
+      <h2 class="title-text" id="t-resume" tabindex="-1">resume.txt - Notepad</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="menubar js-only" role="toolbar" aria-label="Notepad">
+      <button type="button" data-action="print"><u>F</u>ile › Print…</button>
+      <button type="button" data-action="copy-resume"><u>E</u>dit › Copy All</button>
+      <button type="button" data-open="find"><u>S</u>earch</button>
+      <button type="button" data-action="about-notepad"><u>H</u>elp</button>
+    </div>
+    <div class="window-body">
+      <div class="pane" style="flex:1;display:flex">
+<div class="notepad-text" id="resumeText" tabindex="0"><strong>JENNY SPEELMAN</strong>
+Staff Engineer, Developer Relations
+Edge Impulse / Qualcomm · Amsterdam, Netherlands
+<span class="rule">========================================================</span>
+
+I help developers build intelligent things at the edge:
+from sensor to silicon to shipped product. Co-author of
+AI at the Edge (O'Reilly). Speaker, writer, tinkerer.
+
+
+<h3>EXPERIENCE</h3>
+<span class="rule">----------</span>
+
+<h4><strong>Edge Impulse / Qualcomm</strong></h4>
+Staff Engineer, Developer Relations
+Apr 2025 – Present · Amsterdam, NL
+  * Driving developer relations as Edge Impulse becomes part
+    of Qualcomm, growing the Edge AI developer ecosystem
+    globally.
+
+<h4><strong>Edge Impulse</strong></h4>
+Senior Developer Relations Engineer
+Nov 2021 – Apr 2025 · Amsterdam, NL
+  * Built Edge Impulse's developer community through
+    technical content, partnerships, conference presence,
+    and hands-on developer support across the TinyML
+    ecosystem.
+
+User Success Engineer
+Nov 2020 – Nov 2021 · Austin, TX
+  * Mastered solution building with Edge Impulse.
+  * Supported partners porting Edge Impulse to new device
+    targets and integrating with data acquisition, data
+    science, testing, and target optimization interfaces.
+  * Helped developers and customers define data
+    acquisition, ML development, testing, and deployment
+    strategies.
+  * Produced technical documentation, tutorials, blogs,
+    videos, and other content.
+  * Represented Edge Impulse in the wider TinyML community
+    via webinars, workshops, and conferences.
+
+<h4><strong>Arm</strong></h4>
+Applications Engineer, Consulting Engineering
+Nov 2018 – Oct 2020 · Austin, TX
+  * Developed Mbed OS and Arm Pelion Cloud solutions for
+    clinical asset tracking, indoor lighting, and workplace
+    environmental monitoring.
+  * Created a C++ WebSocket library and application for
+    cross-platform communication with Arm Pelion Cloud
+    (ported to JavaScript, Android Java, and C#).
+  * Consulted with third-party engineering teams on
+    integrating devices with Pelion Device Management,
+    including on-site work, weekly updates, and demos.
+
+Graduate Software Engineer, Customer Engineering & Support
+Jun 2018 – Nov 2018 · Austin, TX
+  * Built, ported, and documented new features for Mbed OS.
+  * Resolved issues from developers and customers via
+    os.mbed.com and Stack Overflow.
+  * Coached the developer community with videos, workshops,
+    and sample code; wrote docs, tutorials, blog posts, and
+    API documentation.
+
+Internet of Things Intern
+May 2017 – May 2018 · Austin, TX
+  * Created C/C++ demos for Mbed OS and Pelion Cloud.
+  * Wrote and updated Mbed OS docs and tutorials.
+  * Supported developers on the Mbed forums.
+
+<h4><strong>Earlier</strong></h4>
+  * UT Austin: ServiceNow & IT Service Desk (2014 – 2017)
+  * Arm: Project Management Intern (Summer 2016)
+  * The Walt Disney Company: Disney College Program (2015)
+
+
+<h3>EDUCATION</h3>
+<span class="rule">---------</span>
+
+<strong>The University of Texas at Austin</strong>
+B.S. Electrical & Computer Engineering · 2013 – 2018
+
+
+<h3>PUBLICATIONS</h3>
+<span class="rule">------------</span>
+
+  * <a href="https://www.oreilly.com/library/view/ai-at-the/9781098120191/" target="_blank" rel="noopener">AI at the Edge</a>: Solving Real World Problems with
+    Embedded Machine Learning. O'Reilly, 2023.
+    With Daniel Situnayake.
+  * <a href="https://arxiv.org/abs/2212.03332" target="_blank" rel="noopener">Edge Impulse: An MLOps Platform for Tiny Machine
+    Learning</a>. arXiv, 2022.
+  * 40+ blogs, docs & tutorials. 50+ talks & webinars.
+
+
+<h3>LINKS</h3>
+<span class="rule">-----</span>
+
+  GitHub    <a href="https://github.com/yennster" target="_blank" rel="noopener">github.com/yennster</a>
+  LinkedIn  <a href="https://www.linkedin.com/in/jennyplunkett" target="_blank" rel="noopener">linkedin.com/in/jennyplunkett</a>
+  Mastodon  <a href="https://mastodon.world/@jennyp" target="_blank" rel="noopener">mastodon.world/@jennyp</a>
+  Apps      <a href="https://www.jennyspeelman.dev/" target="_blank" rel="noopener">jennyspeelman.dev</a>
+</div>
+      </div>
+    </div>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       Writing — Explorer
+       ==================================================================== -->
+  <section class="window" id="writing" data-app="writing" data-icon="i-folder" data-task="Writing" aria-labelledby="t-writing" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg>
+      <h2 class="title-text" id="t-writing" tabindex="-1">Exploring - C:\My Documents\Writing</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="toolbar js-only">
+      <button class="tool-btn" type="button" disabled><svg class="ico ico-20" aria-hidden="true"><use href="#i-back"/></svg>Back</button>
+      <button class="tool-btn" type="button" disabled><svg class="ico ico-20" aria-hidden="true"><use href="#i-forward"/></svg>Forward</button>
+      <button class="tool-btn" type="button" data-folder-up><svg class="ico ico-20" aria-hidden="true"><use href="#i-up"/></svg>Up</button>
+    </div>
+    <div class="addressbar js-only">
+      <label for="writingPath">Address</label>
+      <span class="field" id="writingPath"><svg class="ico ico-16" aria-hidden="true"><use href="#i-folder"/></svg><span data-path>C:\My Documents\Writing</span></span>
+    </div>
+    <div class="window-body">
+      <div class="split">
+        <nav class="pane js-only" aria-label="Folders">
+          <ul class="tree">
+            <li><button type="button" aria-pressed="true" data-folder="all"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Writing</span> <span class="count">(40)</span></button>
+              <ul>
+                <li><button type="button" aria-pressed="false" data-folder="research"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Research</span> <span class="count">(1)</span></button></li>
+                <li><button type="button" aria-pressed="false" data-folder="ei-blog"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Edge Impulse Blog</span> <span class="count">(23)</span></button></li>
+                <li><button type="button" aria-pressed="false" data-folder="ei-docs"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Edge Impulse Docs</span> <span class="count">(8)</span></button></li>
+                <li><button type="button" aria-pressed="false" data-folder="mbed"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>Arm Mbed</span> <span class="count">(8)</span></button></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="pane">
+          <table class="listview" id="writingTable">
+            <caption class="sr-only">Blogs, docs, research &amp; tutorials by Jenny Speelman</caption>
+            <thead><tr><th scope="col">Name</th><th scope="col">Type</th><th scope="col">Published on</th></tr></thead>
+            <tbody data-folder="research" data-label="Research">
+              <tr class="group-row"><th colspan="3" scope="colgroup">Research</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-paper"/></svg><a href="https://arxiv.org/abs/2212.03332" target="_blank" rel="noopener">Edge Impulse: An MLOps Platform for Tiny Machine Learning</a></span></td><td class="muted">Research paper</td><td class="muted">arxiv.org</td></tr>
+            </tbody>
+            <tbody data-folder="ei-blog" data-label="Edge Impulse Blog">
+              <tr class="group-row"><th colspan="3" scope="colgroup">Edge Impulse Blog</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/how-to-use-usd-assets-for-any-edge-ai-use-case-with-nvidia-omniverse/" target="_blank" rel="noopener">How to Use USD Assets for Any Edge AI Use Case with NVIDIA Omniverse</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://edgeimpulse.com/blog/impulse-experiments-revolutionize-your-ai-project-workflow/" target="_blank" rel="noopener">Impulse Experiments: Revolutionize Your AI Project Workflow</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/patchcore-boosts-visual-anomaly-detection-in-edge-impulse/" target="_blank" rel="noopener">PatchCore Boosts Visual Anomaly Detection in Edge Impulse</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/unlock-greater-data-flexibility-ingest-tabular-data/" target="_blank" rel="noopener">Unlock Greater Data Flexibility: Ingest Tabular Data</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://developer.nvidia.com/blog/how-to-train-an-object-detection-model-for-visual-inspection-with-synthetic-data/" target="_blank" rel="noopener">How to Train an Object Detection Model for Visual Inspection with Synthetic Data</a></span></td><td class="muted">Blog</td><td class="muted">developer.nvidia.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/solving-real-world-problems-with-embedded-machine-learning-ai-at-the-edge-by-daniel-situnayake-and-jenny-plunkett" target="_blank" rel="noopener">Solving Real World Problems with Embedded Machine Learning: &quot;AI at the Edge&quot;</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/rapidly-detect-changes-in-your-environment-with-edge-impulse-and-nordic-thingy91" target="_blank" rel="noopener">Rapidly Detect Changes in Your Environment with Edge Impulse and Nordic Thingy:91</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/bring-your-own-model-into-edge-impulse-with-onnx" target="_blank" rel="noopener">Bring Your Own Model Into Edge Impulse with ONNX</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/announcing-official-support-for-the-infineon-cy8ckit-062s2-pioneer-kit" target="_blank" rel="noopener">Announcing Official Support for the Infineon CY8CKIT-062S2 Pioneer Kit</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/announcing-official-support-for-the-arduino-nicla-sense-me" target="_blank" rel="noopener">Announcing Official Support for the Arduino Nicla Sense ME</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/rapidly-develop-machine-learning-models-for-edge-applications-over-ble" target="_blank" rel="noopener">Rapidly Develop Machine Learning Models for Edge Applications Over BLE</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/3-ways-to-do-ai-assisted-labeling-for-object-detection" target="_blank" rel="noopener">3 Ways to Do AI-Assisted Labeling for Object Detection</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/advanced-anomaly-detection-with-feature-importance" target="_blank" rel="noopener">Advanced Anomaly Detection with Feature Importance</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/showcase-your-public-projects-with-markdown-readmes" target="_blank" rel="noopener">Showcase Your Public Projects with Markdown READMEs</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/announcing-official-support-for-the-silicon-labs-xg24-dev-kit" target="_blank" rel="noopener">Announcing Official Support for the Silicon Labs xG24 Dev Kit</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/unleash-the-power-of-lte-mnb-iot-and-edge-ai-with-the-nrf9160-dk" target="_blank" rel="noopener">Unleash the Power of LTE-M/NB-IoT &amp; Edge AI with the nRF9160 DK</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/announcing-support-for-the-sony-spresense" target="_blank" rel="noopener">Announcing Support for Sony&#x27;s Spresense Microcontroller</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/continuous-audio-classification-directly-in-your-web-browser" target="_blank" rel="noopener">Continuous Audio Classification Directly in Your Web Browser</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/bird-classification-lacuna-space" target="_blank" rel="noopener">Bird Classification in Remote Areas with Lacuna Space and The Things Network</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/introducing-the-eon-tuner-edge-impulses-new-automl-tool-for-embedded-machine-learning" target="_blank" rel="noopener">Introducing the EON Tuner: Edge Impulse&#x27;s New AutoML Tool for Embedded Machine Learning</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/introducing-downsampling-for-time-series-data" target="_blank" rel="noopener">Introducing Downsampling for Time Series Data</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/utilize-the-power-of-the-crowd-for-data-collection" target="_blank" rel="noopener">Utilize the Power of the Crowd for Data Collection</a></span></td><td class="muted">Blog</td><td class="muted">edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://www.edgeimpulse.com/blog/infineon-sense2gol-pulse" target="_blank" rel="noopener">Using Doppler Radar for Gesture Recognition with the Infineon Sense2GoL-Pulse</a></span></td><td class="muted">Tutorial</td><td class="muted">edgeimpulse.com</td></tr>
+            </tbody>
+            <tbody data-folder="ei-docs" data-label="Edge Impulse Docs">
+              <tr class="group-row"><th colspan="3" scope="colgroup">Edge Impulse Docs</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg><a href="https://docs.edgeimpulse.com/docs/development-platforms/officially-supported-mcu-targets/arduino-nicla-sense-me" target="_blank" rel="noopener">Getting Started with Arduino Nicla Sense ME</a></span></td><td class="muted">Documentation</td><td class="muted">docs.edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg><a href="https://docs.edgeimpulse.com/docs/development-platforms/officially-supported-mcu-targets/nordic-semi-thingy53" target="_blank" rel="noopener">Getting Started with Nordic Semi Thingy:53 &amp; nRF Edge Impulse App</a></span></td><td class="muted">Documentation</td><td class="muted">docs.edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg><a href="https://docs.edgeimpulse.com/docs/sony-spresense" target="_blank" rel="noopener">Getting Started with Sony&#x27;s Spresense</a></span></td><td class="muted">Documentation</td><td class="muted">docs.edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg><a href="https://docs.edgeimpulse.com/docs/eon-tuner" target="_blank" rel="noopener">EON Tuner Guide</a></span></td><td class="muted">Documentation</td><td class="muted">docs.edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg><a href="https://docs.edgeimpulse.com/docs/integrations/nvidia-tao" target="_blank" rel="noopener">NVIDIA TAO Toolkit — Edge Impulse Integration</a></span></td><td class="muted">Documentation</td><td class="muted">docs.edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg><a href="https://docs.edgeimpulse.com/docs/integrations/nvidia-omniverse" target="_blank" rel="noopener">NVIDIA Omniverse — Edge Impulse Integration</a></span></td><td class="muted">Documentation</td><td class="muted">docs.edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg><a href="https://docs.edgeimpulse.com/docs/edge-impulse-studio/data-acquisition/tabular-data" target="_blank" rel="noopener">Tabular Data (Pre-processed &amp; Non-time-series)</a></span></td><td class="muted">Documentation</td><td class="muted">docs.edgeimpulse.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg><a href="https://docs.edgeimpulse.com/docs/edge-impulse-studio/learning-blocks/visual-anomaly-detection" target="_blank" rel="noopener">Visual Anomaly Detection (FOMO-AD)</a></span></td><td class="muted">Documentation</td><td class="muted">docs.edgeimpulse.com</td></tr>
+            </tbody>
+            <tbody data-folder="mbed" data-label="Arm Mbed">
+              <tr class="group-row"><th colspan="3" scope="colgroup">Arm Mbed</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://os.mbed.com/blog/entry/How-to-use-emWin-with-Mbed-OS/" target="_blank" rel="noopener">How to Use emWin with Mbed OS</a></span></td><td class="muted">Blog</td><td class="muted">os.mbed.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://os.mbed.com/blog/entry/How-to-LPCXpresso54608-touch-panel/" target="_blank" rel="noopener">How to Use the LPCXpresso54608&#x27;s Touch Panel</a></span></td><td class="muted">Blog</td><td class="muted">os.mbed.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://os.mbed.com/users/jplunkett/notebook/updating-component-to-mbed-os/" target="_blank" rel="noopener">Updating an Old Mbed 2 Component to Mbed OS</a></span></td><td class="muted">Tutorial</td><td class="muted">os.mbed.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg><a href="https://os.mbed.com/users/jplunkett/notebook/first-mbed-application/" target="_blank" rel="noopener">Creating Your First Mbed Application</a></span></td><td class="muted">Tutorial</td><td class="muted">os.mbed.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-forum"/></svg><a href="https://os.mbed.com/questions/82191/mbed-http-compile-fail/" target="_blank" rel="noopener">Library Compiling Issue</a></span></td><td class="muted">Forum answer</td><td class="muted">os.mbed.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-forum"/></svg><a href="https://os.mbed.com/questions/82107/How-do-I-manage-the-code-in-my-local-rep/" target="_blank" rel="noopener">Microbit &amp; Local Code Repository Issue</a></span></td><td class="muted">Forum answer</td><td class="muted">os.mbed.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-forum"/></svg><a href="https://os.mbed.com/questions/82092/How-to-get-led-to-blink-and-print-times-/" target="_blank" rel="noopener">Beginning Developer Notes &amp; Advice</a></span></td><td class="muted">Forum answer</td><td class="muted">os.mbed.com</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-forum"/></svg><a href="https://os.mbed.com/questions/81824/offline-API-document/" target="_blank" rel="noopener">How to View API Docs Offline</a></span></td><td class="muted">Forum answer</td><td class="muted">os.mbed.com</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer class="statusbar"><p data-status>40 object(s)</p><p class="grow-0">Blogs, docs &amp; research</p></footer>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       Talks — Media Player
+       ==================================================================== -->
+  <section class="window" id="talks" data-app="talks" data-icon="i-media" data-task="Media Player - Talks" aria-labelledby="t-talks" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-media"/></svg>
+      <h2 class="title-text" id="t-talks" tabindex="-1">Media Player - Webinars, talks &amp; interviews</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="window-body">
+      <div class="media-grid">
+        <div class="player js-only" id="player">
+          <div class="viz" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+          <div class="now-playing" aria-live="polite">
+            <p class="label">Now playing</p>
+            <p class="np-title" id="npTitle">—</p>
+            <p class="np-meta" id="npMeta">50+ webinars, workshops, keynotes &amp; podcasts</p>
+          </div>
+          <div class="player-controls">
+            <button class="btn" type="button" data-player="prev" aria-label="Previous talk"><svg class="ico" aria-hidden="true"><use href="#i-prev"/></svg></button>
+            <button class="btn" type="button" data-player="play" aria-label="Watch this talk (opens in a new tab)"><svg class="ico" aria-hidden="true"><use href="#i-play"/></svg></button>
+            <button class="btn" type="button" data-player="next" aria-label="Next talk"><svg class="ico" aria-hidden="true"><use href="#i-next"/></svg></button>
+          </div>
+        </div>
+        <nav class="pane js-only" aria-label="Media library">
+          <ul class="tree">
+            <li><button type="button" aria-pressed="true" data-year="all"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span>All talks</span> <span class="count">(58)</span></button>
+              <ul>
+                <li><button type="button" aria-pressed="false" data-year="2025"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>2025</span> <span class="count">(3)</span></button></li>
+                <li><button type="button" aria-pressed="false" data-year="2024"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>2024</span> <span class="count">(9)</span></button></li>
+                <li><button type="button" aria-pressed="false" data-year="2023"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>2023</span> <span class="count">(8)</span></button></li>
+                <li><button type="button" aria-pressed="false" data-year="2022"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>2022</span> <span class="count">(21)</span></button></li>
+                <li><button type="button" aria-pressed="false" data-year="2021"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>2021</span> <span class="count">(16)</span></button></li>
+                <li><button type="button" aria-pressed="false" data-year="2020"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span>2020</span> <span class="count">(1)</span></button></li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+        <div class="pane">
+          <table class="listview" id="talksTable">
+            <caption class="sr-only">Webinars, talks &amp; interviews by Jenny Speelman, newest first</caption>
+            <thead><tr><th scope="col">Title</th><th scope="col">Event</th><th scope="col">Type</th><th scope="col">Date</th></tr></thead>
+            <tbody data-year="2025">
+              <tr class="group-row"><th colspan="4" scope="colgroup">2025</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.edgeaifoundation.org/events/30688" target="_blank" rel="noopener">Edge AI Tooling &amp; Development Frameworks: MLOps for Edge AI</a></span></span></td><td class="muted">Edge AI Foundation Taipei 2025</td><td class="muted">Conference Talk</td><td class="muted">Nov 2025</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=Bn9XgBYjnLg&amp;ab_channel=EDGEAIFOUNDATION" target="_blank" rel="noopener">EDGE AI TALKS: AI Born at the Edge, Built on NXP</a></span></span></td><td class="muted">Edge AI Foundation</td><td class="muted">Panel / Talk</td><td class="muted">Feb 2025</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://edgeimpulse.com/all-events/see-it-hear-it-sense-it----360deg-anomaly-detection-webinar-for-real-world-industrial-applications" target="_blank" rel="noopener">See It, Hear It, Sense It — 360° Anomaly Detection Webinar for Real-world Industrial Applications</a></span></span></td><td class="muted">Edge Impulse</td><td class="muted">Webinar</td><td class="muted">Jan 2025</td></tr>
+            </tbody>
+            <tbody data-year="2024">
+              <tr class="group-row"><th colspan="4" scope="colgroup">2024</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=38EdyhPy7io" target="_blank" rel="noopener">EDGE AI TALKS! MLSysBook.AI: Essentials of Engineering ML Systems with Vijay Janapa Reddi</a></span></span></td><td class="muted">Edge AI Foundation</td><td class="muted">Panel / Talk</td><td class="muted">Nov 2024</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.linkedin.com/posts/edgeimpulse_edgeai-ml-ai-activity-7289758955994562561-kEAS?utm_source=share&amp;utm_medium=member_desktop" target="_blank" rel="noopener">The Ultimate Guide to Edge AI</a></span></span></td><td class="muted">Edge Impulse</td><td class="muted">Video</td><td class="muted">Oct 2024</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=TTi6ITX8T9Q" target="_blank" rel="noopener">Generative AI and IoT, is there a match? — The Things Podcast</a></span></span></td><td class="muted">The Things Conference 2024</td><td class="muted">Podcast / Conference</td><td class="muted">Sep 2024</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://youtu.be/3NvLb7faOOs" target="_blank" rel="noopener">Impulse Experiments: Revolutionize Your AI Project Workflow</a></span></span></td><td class="muted">Edge Impulse</td><td class="muted">Video</td><td class="muted">Jul 2024</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://edgeimpulse.com/events/synthetic-data-for-the-edge-speed-up-ml-development-with-nvidia-omniverse-and-edge-impulse" target="_blank" rel="noopener">Speed Up ML Development with NVIDIA Omniverse and Edge Impulse</a></span></span></td><td class="muted">NVIDIA Omniverse</td><td class="muted">Webinar</td><td class="muted">May 2024</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://wfm-publish.blaetterkatalog.de/frontend/mvc/catalog/by-name/MUV?catalogName=EW24Programm" target="_blank" rel="noopener">How to Train an Object Detection Model for Visual Inspection with Synthetic Data</a></span></span></td><td class="muted">Embedded World 2024</td><td class="muted">Conference Talk</td><td class="muted">Apr 2024</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.nvidia.com/en-us/on-demand/session/gtc24-se62943/" target="_blank" rel="noopener">Getting AI to the Edge with NVIDIA Jetson Orin, Edge Impulse and Lumeo</a></span></span></td><td class="muted">NVIDIA GTC 2024</td><td class="muted">Conference Talk</td><td class="muted">Mar 2024</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.nvidia.com/en-us/on-demand/session/gtc24-s61308/" target="_blank" rel="noopener">Swift Path to Edge AI: Revolutionizing Development Through Synthetic Data</a></span></span></td><td class="muted">NVIDIA GTC 2024</td><td class="muted">Conference Talk</td><td class="muted">Mar 2024</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://vimeo.com/915253676/e9bcc739b1?share=copy" target="_blank" rel="noopener">Edge Impulse Booth Sizzle Reel</a></span></span></td><td class="muted">NVIDIA GTC 2024</td><td class="muted">Video</td><td class="muted">Feb 2024</td></tr>
+            </tbody>
+            <tbody data-year="2023">
+              <tr class="group-row"><th colspan="4" scope="colgroup">2023</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://podcasts.apple.com/us/podcast/generative-ai-at-the-edge-with-daniel-situnayake-head/id1524888337?i=1000634889101" target="_blank" rel="noopener">Generative AI at the Edge with Daniel Situnayake, Head of ML, and Jenny Plunkett</a></span></span></td><td class="muted">Dell &quot;Over the Edge&quot; Podcast</td><td class="muted">Podcast</td><td class="muted">Nov 2023</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=5spW6IX_v9U" target="_blank" rel="noopener">Fast Track AI to the Edge with NVIDIA TAO &amp; Edge Impulse</a></span></span></td><td class="muted">NVIDIA TAO Toolkit</td><td class="muted">Webinar</td><td class="muted">Nov 2023</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=PDEFs79BjOg" target="_blank" rel="noopener">Training Computer Vision Models With Synthetic Data | Omniverse Live</a></span></span></td><td class="muted">NVIDIA Omniverse</td><td class="muted">Webinar</td><td class="muted">Oct 2023</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=eId8Flm1a_U" target="_blank" rel="noopener">Rapidly Develop AI Models for Production-Grade IoT Edge Devices</a></span></span></td><td class="muted">The Things Conference 2023</td><td class="muted">Conference Talk</td><td class="muted">Sep 2023</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://vimeo.com/832255349" target="_blank" rel="noopener">Website Introduction to Edge Impulse for Embedded Engineers</a></span></span></td><td class="muted">Edge Impulse</td><td class="muted">Video</td><td class="muted">Jun 2023</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://events.bizzabo.com/aiattheedgefiresidechat" target="_blank" rel="noopener">&quot;AI at the Edge&quot; Fireside Chat with Jenny Plunkett &amp; Daniel Situnayake</a></span></span></td><td class="muted">Edge Impulse</td><td class="muted">Fireside Chat</td><td class="muted">Apr 2023</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=UCbSBfzg4yA" target="_blank" rel="noopener">Opening Keynote with Dan Situnayake — Workshop on Scientific Use of Machine Learning on Low-Power Devices: Applications and Advanced Topics</a></span></span></td><td class="muted">Harvard SciTinyML</td><td class="muted">Keynote</td><td class="muted">Apr 2023</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=MsmGxjHyVLs" target="_blank" rel="noopener">2023 Deep Dive Session Interview: Edge Impulse</a></span></span></td><td class="muted">Edge AI + Vision Alliance</td><td class="muted">Interview</td><td class="muted">Mar 2023</td></tr>
+            </tbody>
+            <tbody data-year="2022">
+              <tr class="group-row"><th colspan="4" scope="colgroup">2022</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.linkedin.com/events/6993528203252277248/" target="_blank" rel="noopener">K-Way x Arduino &quot;Prêt-à-tinyML&quot; — Massimo Banzi and Jenny Plunkett</a></span></span></td><td class="muted">Arduino</td><td class="muted">Panel / Event</td><td class="muted">Nov 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=ANIB8GGGy1E" target="_blank" rel="noopener">Object Detection Live Demo Using Edge Impulse to Count Washers and Screws</a></span></span></td><td class="muted">Hardware Pioneers Max 2022</td><td class="muted">Demo</td><td class="muted">Oct 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://register.gotowebinar.com/register/88039421809252111" target="_blank" rel="noopener">Advanced Sensor Anomaly Detection</a></span></span></td><td class="muted">IoT Central</td><td class="muted">Webinar</td><td class="muted">Oct 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=9DyZaWdlQWI" target="_blank" rel="noopener">tinyML Smart Weather Station: Development of Low-Cost Observation Networks to Support Weather and Hydrology Applications</a></span></span></td><td class="muted">tinyML Talks</td><td class="muted">Conference Talk</td><td class="muted">Sep 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.kisacoresearch.com/edge-ai-summit-2022-agenda#developer-workshop-real-time-object-detection-for-factory-40-%E2%80%93-free-by-application" target="_blank" rel="noopener">Developer Workshop: Real-Time Object Detection for Factory 4.0</a></span></span></td><td class="muted">Kisaco Research Edge AI Summit</td><td class="muted">Workshop</td><td class="muted">Sep 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://workswith.silabs.com/agenda/session/896404" target="_blank" rel="noopener">AIML-301 Enabling Continuous Learning for ML-based Anomaly Detection at the Edge</a></span></span></td><td class="muted">Silicon Labs WorksWith</td><td class="muted">Conference Talk</td><td class="muted">Sep 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://ghc.anitab.org/ghc-22-agenda/" target="_blank" rel="noopener">Kickstart Your Career in Edge AI: Design, Train and Deploy an ML Model in Under an Hour</a></span></span></td><td class="muted">Grace Hopper Celebration</td><td class="muted">Conference Talk</td><td class="muted">Sep 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.topionetworks.com/events/62ed4424a20d485bb2dca42a" target="_blank" rel="noopener">Deploying Vision-Based Models on Highly Constrained Devices</a></span></span></td><td class="muted">Topio Networks</td><td class="muted">Conference Talk</td><td class="muted">Aug 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://register.gotowebinar.com/register/5240104617063188491" target="_blank" rel="noopener">Edge Impulse&#x27;s FOMO Technology and Sony&#x27;s Computer Vision Platform: A Compelling Combination</a></span></span></td><td class="muted">Edge AI + Vision Alliance</td><td class="muted">Webinar</td><td class="muted">Aug 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=ponZ2ahE3uQ" target="_blank" rel="noopener">Edge Impulse MLOps AMA</a></span></span></td><td class="muted">Ask Me Anything</td><td class="muted">Interview / AMA</td><td class="muted">Jul 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=dj-2T8DVtSg" target="_blank" rel="noopener">Getting Started with the Arduino Nicla Sense ME and Edge Impulse</a></span></span></td><td class="muted">Tutorial</td><td class="muted">Tutorial</td><td class="muted">Jun 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.edge-ai-vision.com/2022/09/edge-impulse-demonstration-of-wildlife-monitoring-with-sony-spresense/" target="_blank" rel="noopener">Edge Impulse Demonstration of Wildlife Monitoring with Sony Spresense</a></span></span></td><td class="muted">Embedded Vision Summit</td><td class="muted">Demo</td><td class="muted">Jun 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.edge-ai-vision.com/2022/09/edge-impulse-demonstration-of-screw-and-washer-detection-with-fomo/" target="_blank" rel="noopener">Edge Impulse Demonstration of Screw and Washer Detection with FOMO</a></span></span></td><td class="muted">Embedded Vision Summit</td><td class="muted">Demo</td><td class="muted">Jun 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://danishsoundcluster.dk/keyword-detection-esp32/" target="_blank" rel="noopener">Keyword Detection ESP32 Workshop</a></span></span></td><td class="muted">Danish Sound Cluster</td><td class="muted">Workshop</td><td class="muted">Jun 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://embeddedvisionsummit.com/edge-impulse-deep-dive/" target="_blank" rel="noopener">Edge Impulse Deep Dive Session — FOMO: Real-Time Object Detection on Low-Power Microcontrollers</a></span></span></td><td class="muted">Embedded Vision Summit</td><td class="muted">Conference Talk</td><td class="muted">May 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.iotcentral.io/videos/create-real-time-object-detection-on-low-power-microcontrollers" target="_blank" rel="noopener">Create Real-Time Object Detection on Low-Power Microcontrollers</a></span></span></td><td class="muted">IoT Central</td><td class="muted">Webinar</td><td class="muted">May 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=S4JZ7rZSmIs" target="_blank" rel="noopener">Deep Dive Session Interview: Edge Impulse</a></span></span></td><td class="muted">Embedded Vision Summit</td><td class="muted">Interview</td><td class="muted">Apr 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.iotcentral.io/videos/classify-non-human-voice-audio-for-automation-and-embedded-ml" target="_blank" rel="noopener">Classify Non-Human Voice Audio for Automation and Embedded Machine Learning</a></span></span></td><td class="muted">IoT Central</td><td class="muted">Webinar</td><td class="muted">Apr 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://danishsoundcluster.dk/edge-impulse-for-consumer-audio-applications/" target="_blank" rel="noopener">Edge Impulse for Consumer Audio Applications</a></span></span></td><td class="muted">Danish Sound Cluster</td><td class="muted">Webinar</td><td class="muted">Apr 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://community.element14.com/learn/events/c/e/1575" target="_blank" rel="noopener">Machine Learning &amp; Sensor Fusion Make Smart Cities, Smarter!</a></span></span></td><td class="muted">Element14</td><td class="muted">Webinar</td><td class="muted">Feb 2022</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://forums.tinyml.org/t/tinyml-talks-on-february-15-2022-advanced-anomaly-detection-made-easy-by-jenny-plunkett/776" target="_blank" rel="noopener">Advanced Anomaly Detection Made Easy</a></span></span></td><td class="muted">tinyML Talks</td><td class="muted">Conference Talk</td><td class="muted">Feb 2022</td></tr>
+            </tbody>
+            <tbody data-year="2021">
+              <tr class="group-row"><th colspan="4" scope="colgroup">2021</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://cfsummit.vconfex.com/event/adobe-coldfusion-summit-2021_/1290?redirect=1#category=6&amp;module=28150" target="_blank" rel="noopener">The Dawn of Machine Learning, AI and You</a></span></span></td><td class="muted">Adobe ColdFusion Summit</td><td class="muted">Conference Talk</td><td class="muted">Dec 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://register.gotowebinar.com/register/4284862102840899596?source=IoTCMC" target="_blank" rel="noopener">Factory 4.0: ML-Powered Manufacturing Workshop</a></span></span></td><td class="muted">IoT Central &amp; Arduino PRO</td><td class="muted">Workshop</td><td class="muted">Nov 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=gw1E5JZTim0" target="_blank" rel="noopener">TensorFlow ML Community Day: Building Machine Learning Models with Edge Impulse</a></span></span></td><td class="muted">Google TensorFlow</td><td class="muted">Conference Talk</td><td class="muted">Nov 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.dsponlineconference.com/session/Real_Life_Embedded_ML_plus_The_AI_Powered_Nose" target="_blank" rel="noopener">Real Life Embedded ML + The AI-Powered Nose</a></span></span></td><td class="muted">DSP Online Conference</td><td class="muted">Conference Talk</td><td class="muted">Oct 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://youtu.be/2hOvUUhlngs" target="_blank" rel="noopener">Getting Started with Edge Impulse and Sony&#x27;s Spresense</a></span></span></td><td class="muted">Tutorial</td><td class="muted">Tutorial</td><td class="muted">Oct 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=_MX_XjyYMcQ" target="_blank" rel="noopener">Jenny Plunkett on Edge Impulse + Sony&#x27;s Spresense</a></span></span></td><td class="muted">Hackster Café</td><td class="muted">Interview</td><td class="muted">Aug 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=ipPLZNkAI0Y" target="_blank" rel="noopener">Supercharge Your Products with Sony&#x27;s Spresense &amp; Edge Impulse Embedded ML</a></span></span></td><td class="muted">Hackster</td><td class="muted">Webinar</td><td class="muted">Aug 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=_Ozui1kkOyo" target="_blank" rel="noopener">Edge Impulse Embedded Machine Learning AMA</a></span></span></td><td class="muted">Interview</td><td class="muted">Interview / AMA</td><td class="muted">Jul 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="http://www.embeddedonlineconference.com/workshop/Learning_how_to_Deliver_AI_Solution_In_Days_Not_Months" target="_blank" rel="noopener">Learning How to Deliver AI Solutions In Days, Not Months with Sony&#x27;s Spresense</a></span></span></td><td class="muted">Embedded Online Conference</td><td class="muted">Workshop</td><td class="muted">Jul 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://youtu.be/OI9AymVUU_4" target="_blank" rel="noopener">Connecting Sony&#x27;s Spresense to Edge Impulse</a></span></span></td><td class="muted">Tutorial</td><td class="muted">Tutorial</td><td class="muted">Jun 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://register.gotowebinar.com/register/1871782622855797262" target="_blank" rel="noopener">Tech Snack: Build Industrial-Grade Embedded Applications In Days, Not Months, with Edge Impulse and Silicon Labs</a></span></span></td><td class="muted">Arrow Festival</td><td class="muted">Webinar</td><td class="muted">Jun 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://register.gotowebinar.com/register/4941644376358448396" target="_blank" rel="noopener">Deep-dive: Build Industrial-Grade Embedded Applications In Days, Not Months, with Edge Impulse and Silicon Labs</a></span></span></td><td class="muted">Arrow Festival</td><td class="muted">Webinar</td><td class="muted">Jun 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=_T6h3Jmq2Yk" target="_blank" rel="noopener">High-Speed Object Detection with Jetson Nano and Edge Impulse</a></span></span></td><td class="muted">Embedded Vision Summit</td><td class="muted">Conference Talk</td><td class="muted">May 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.element14.com/community/events/5761/l/thunderboard-workshop-industrial-grade-tinyml-applications-with-silicon-labs-and-edge-impulse" target="_blank" rel="noopener">Industrial-Grade TinyML Applications with Silicon Labs and Edge Impulse</a></span></span></td><td class="muted">Element14</td><td class="muted">Workshop</td><td class="muted">Mar 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://event.on24.com/eventRegistration/EventLobbyServlet?target=reg20.jsp&amp;mode=login&amp;loginemail=o-loera%40ti.com&amp;eventid=2996419&amp;sessionid=1&amp;key=30161E260D75AB000445DD4A5C855DEE®Tag=&amp;V2=false&amp;sourcepage=register" target="_blank" rel="noopener">Embedded Machine Learning with TI LaunchPad™ Development Kits &amp; Edge Impulse</a></span></span></td><td class="muted">Texas Instruments University</td><td class="muted">Webinar</td><td class="muted">Feb 2021</td></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.youtube.com/watch?v=eOF3NA0Me7Q" target="_blank" rel="noopener">Interview with Zach Shelby, Pete Warden, Alessandro Grande &amp; Robert Wolff</a></span></span></td><td class="muted">Arm Innovation Coffee Chat</td><td class="muted">Interview</td><td class="muted">Jan 2021</td></tr>
+            </tbody>
+            <tbody data-year="2020">
+              <tr class="group-row"><th colspan="4" scope="colgroup">2020</th></tr>
+              <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg><span><a href="https://www.element14.com/community/events/5674/l/introduction-to-tinyml-by-edge-impulse" target="_blank" rel="noopener">Introduction to TinyML by Edge Impulse</a> <span class="award"><span aria-hidden="true">🏆 </span>Favourite Webinar of Year 2020</span></span></span></td><td class="muted">Element14</td><td class="muted">Webinar</td><td class="muted">Dec 2020</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+    <footer class="statusbar"><p data-status>58 items</p><p class="grow-0">From NVIDIA GTC to Grace Hopper</p></footer>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       AI at the Edge — Reader
+       ==================================================================== -->
+  <section class="window" id="book" data-app="book" data-icon="i-book" data-task="AI at the Edge" aria-labelledby="t-book" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-book"/></svg>
+      <h2 class="title-text" id="t-book" tabindex="-1">AI at the Edge - Reader</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="window-body">
+      <div class="reader pane">
+        <article class="reader-page">
+          <picture>
+            <source type="image/webp" srcset="images/book-cover-220.webp 1x, images/book-cover-440.webp 2x" />
+            <img src="images/book-cover-220.jpg" srcset="images/book-cover-220.jpg 1x, images/book-cover-440.jpg 2x" width="220" height="289" alt="Cover of AI at the Edge, published by O'Reilly" loading="lazy" />
+          </picture>
+          <div>
+            <p class="eyebrow">O'Reilly Media · 2023</p>
+            <h3>AI at the Edge</h3>
+            <p class="subtitle">Solving Real World Problems with Embedded Machine Learning</p>
+            <p>Co-authored with Daniel Situnayake: the definitive guide to building machine learning systems for resource-constrained devices. It covers data collection, model training, and deployment on microcontrollers, from concept to production.</p>
+            <a class="btn btn-default" href="https://www.oreilly.com/library/view/ai-at-the/9781098120191/" target="_blank" rel="noopener">Read on O'Reilly →</a>
+          </div>
+        </article>
+      </div>
+    </div>
+    <footer class="statusbar"><p>Page 1 of 1</p><p class="grow-0">ISBN 978-1-098-12019-1</p></footer>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       AI Apps — Web browser
+       ==================================================================== -->
+  <section class="window" id="apps" data-app="apps" data-icon="i-globe" data-task="jennyspeelman.dev" aria-labelledby="t-apps" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>
+      <h2 class="title-text" id="t-apps" tabindex="-1">Jenny's apps, built with AI - Web Explorer</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="toolbar js-only">
+      <button class="tool-btn" type="button" disabled><svg class="ico ico-20" aria-hidden="true"><use href="#i-back"/></svg>Back</button>
+      <button class="tool-btn" type="button" disabled><svg class="ico ico-20" aria-hidden="true"><use href="#i-forward"/></svg>Forward</button>
+      <button class="tool-btn" type="button" data-action="no-stop"><svg class="ico ico-20" aria-hidden="true"><use href="#i-stop"/></svg>Stop</button>
+      <button class="tool-btn" type="button" data-action="refresh-apps"><svg class="ico ico-20" aria-hidden="true"><use href="#i-refresh"/></svg>Refresh</button>
+      <button class="tool-btn" type="button" data-open="profile"><svg class="ico ico-20" aria-hidden="true"><use href="#i-home"/></svg>Home</button>
+    </div>
+    <div class="addressbar js-only">
+      <label for="appsAddress">Address</label>
+      <span class="field" id="appsAddress"><svg class="ico ico-16" aria-hidden="true"><use href="#i-globe"/></svg>http://www.jennyspeelman.dev/</span>
+      <a class="btn" style="min-width:0" href="https://www.jennyspeelman.dev/" target="_blank" rel="noopener">Go</a>
+    </div>
+    <div class="window-body">
+      <div class="pane webpage" id="appsPage">
+        <div class="webpage-inner">
+          <h3>Jenny's apps, built with AI</h3>
+          <p class="tagline">A playground for the things I prompt into existence.</p>
+          <hr class="rainbow-hr" />
+          <h4>★ Featured</h4>
+          <ul class="app-list">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-fanficly"/></svg><div><a href="https://apps.apple.com/us/app/fanficly-ao3-fanfiction/id6775897153" target="_blank" rel="noopener">Fanficly</a><span class="new-badge blink">NEW!</span><p>Open-source, ad-free iPhone and iPad reader for AO3 fanfiction, with prompt-style search and an offline library.</p><p class="where">App Store</p></div></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-diff"/></svg><div><a href="https://differentialis.app" target="_blank" rel="noopener">Differentialis</a><span class="new-badge blink">NEW!</span><p>Native macOS app for comparing and merging text, images, and folders, with built-in git.</p><p class="where">differentialis.app</p></div></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-cube"/></svg><div><a href="https://synthetic.jennyspeelman.dev" target="_blank" rel="noopener">Synthetic Data Studio</a><p>Browser-based 3D tool for generating synthetic training data with hand-tracked gestures or a virtual camera, with Edge Impulse upload.</p><p class="where">synthetic.jennyspeelman.dev</p></div></li>
+          </ul>
+          <h4>★ The apps</h4>
+          <ul class="app-list">
+            <li><svg class="ico" aria-hidden="true"><use href="#i-clapper"/></svg><div><a href="https://github.com/yennster/automated-descript-creation" target="_blank" rel="noopener">Descript Automation</a><p>Automates creating demo videos for web apps in Descript: capture, scripting, and drafting.</p><p class="where">GitHub</p></div></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-tag"/></svg><div><a href="https://label.jennyspeelman.dev" target="_blank" rel="noopener">EI Label Studio</a><p>Pulls samples from an Edge Impulse project, lets you relabel them in Label Studio, and pushes corrections back.</p><p class="where">label.jennyspeelman.dev</p></div></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-sheet"/></svg><div><a href="https://csv.jennyspeelman.dev" target="_blank" rel="noopener">EI CSV Editor</a><p>Visualize and edit time-series sensor data from CSVs, with formulas, cropping, and Edge Impulse upload.</p><p class="where">csv.jennyspeelman.dev</p></div></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-chart"/></svg><div><a href="https://dash.jennyspeelman.dev" target="_blank" rel="noopener">EI Plotly Dashboard</a><p>Interactive Plotly time-series dashboard for Edge Impulse projects, with zoom, pan, and PNG export.</p><p class="where">dash.jennyspeelman.dev</p></div></li>
+            <li><svg class="ico" aria-hidden="true"><use href="#i-bulb"/></svg><div><a href="https://github.com/yennster/party-house" target="_blank" rel="noopener">Party House</a><p>Native app for controlling smart lights from Hue, Home Assistant, and LIFX across iPhone, iPad, Mac, menu bar, and widgets.</p><p class="where">GitHub</p></div></li>
+          </ul>
+          <hr class="rainbow-hr" />
+          <p><a href="https://www.jennyspeelman.dev/" target="_blank" rel="noopener">Visit the real jennyspeelman.dev →</a> · <a href="https://github.com/yennster" target="_blank" rel="noopener">More on GitHub</a></p>
+          <p class="best-viewed">This page is best viewed with Web Explorer 5.0 or higher at 800×600.</p>
+        </div>
+      </div>
+    </div>
+    <footer class="statusbar"><p>Done</p><p class="grow-0">Internet zone</p></footer>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       Mail Jenny — New Message
+       ==================================================================== -->
+  <section class="window" id="contact" data-app="contact" data-icon="i-mail" data-task="New Message" aria-labelledby="t-contact" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>
+      <h2 class="title-text" id="t-contact" tabindex="-1">New Message - Let's connect</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <form class="window-body" id="mailForm" style="padding:0 2px">
+      <div class="toolbar js-only">
+        <button class="tool-btn" type="submit"><svg class="ico ico-20" aria-hidden="true"><use href="#i-send"/></svg>Send</button>
+        <span class="tool-sep"></span>
+        <span style="padding:0 6px;color:var(--muted);font-size:11px">Opens in your own email app. Nothing is sent from this page.</span>
+      </div>
+      <div class="mail-fields js-only">
+        <label for="mailTo">To:</label>
+        <input id="mailTo" type="text" readonly value="hello&#64;jennyplunkett&#46;me" />
+        <label for="mailSubject">Subject:</label>
+        <input id="mailSubject" type="text" value="Hi Jenny!" />
+      </div>
+      <div class="mail-body js-only">
+        <label for="mailBody" class="sr-only">Message</label>
+        <textarea id="mailBody" placeholder="Speaking invite? Collaboration? Just saying hi? Type away…"></textarea>
+      </div>
+      <div class="mail-elsewhere">
+        <p>Or find me at:</p>
+        <ul>
+          <li><a class="btn" href="mailto:hello&#64;jennyplunkett&#46;me"><svg class="ico ico-16" aria-hidden="true"><use href="#i-mail"/></svg>hello&#64;jennyplunkett&#46;me</a></li>
+          <li><a class="btn" href="https://www.linkedin.com/in/jennyplunkett" target="_blank" rel="noopener me"><svg class="ico ico-16" aria-hidden="true"><use href="#i-addfriend"/></svg>LinkedIn</a></li>
+          <li><a class="btn" href="https://github.com/yennster" target="_blank" rel="noopener me"><svg class="ico ico-16" aria-hidden="true"><use href="#i-code"/></svg>github.com/yennster</a></li>
+          <li><a class="btn" href="https://mastodon.world/@jennyp" target="_blank" rel="noopener me"><svg class="ico ico-16" aria-hidden="true"><use href="#i-forum"/></svg>mastodon.world/@jennyp</a></li>
+        </ul>
+      </div>
+    </form>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       My Computer — System Properties
+       ==================================================================== -->
+  <section class="window" id="computer" data-app="computer" data-icon="i-computer" data-task="System Properties" aria-labelledby="t-computer" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-computer"/></svg>
+      <h2 class="title-text" id="t-computer" tabindex="-1">System Properties</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="window-body props">
+      <div class="tabs js-only" role="tablist" aria-label="System Properties">
+        <button class="tab" role="tab" type="button" id="tab-sys-general" aria-selected="true" aria-controls="panel-sys-general">General</button>
+        <button class="tab" role="tab" type="button" id="tab-sys-devices" aria-selected="false" aria-controls="panel-sys-devices" tabindex="-1">Device Manager</button>
+      </div>
+      <div class="tab-panel" role="tabpanel" id="panel-sys-general" aria-labelledby="tab-sys-general">
+        <div class="sys-general">
+          <div class="sys-logo"><svg viewBox="0 0 32 32" aria-hidden="true"><use href="#i-chip"/></svg></div>
+          <dl>
+            <dt>System:</dt>
+            <dd>Jenny 98<br>Second Edition<br>4.10.2026</dd>
+            <dt>Registered to:</dt>
+            <dd>Jenny Speelman<br>Amsterdam, Netherlands<br>Edge Impulse · Qualcomm</dd>
+            <dt>Computer:</dt>
+            <dd>Staff Engineer, Developer Relations<br>5+ years in Edge AI<br>50+ webinars &amp; talks<br>40+ blogs &amp; docs<br>1 O'Reilly book<br>65,536 KB of curiosity</dd>
+          </dl>
+        </div>
+      </div>
+      <div class="tab-panel" role="tabpanel" id="panel-sys-devices" aria-labelledby="tab-sys-devices" hidden>
+        <p style="margin-bottom:6px">View devices (skills) by type:</p>
+        <div class="device-tree">
+          <details open><summary><svg class="ico" aria-hidden="true"><use href="#i-computer"/></svg>JENNY-98</summary>
+            <details open><summary><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>Edge AI accelerators</summary>
+              <ul><li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>TinyML &amp; embedded machine learning</li><li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>Computer vision &amp; object detection (FOMO)</li><li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>Anomaly detection</li><li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>Synthetic data (NVIDIA Omniverse)</li><li><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>MLOps for the edge</li></ul>
+            </details>
+            <details><summary><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>Network adapters</summary>
+              <ul><li><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>Developer relations</li><li><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>Community building</li><li><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>Partner engineering &amp; consulting</li></ul>
+            </details>
+            <details><summary><svg class="ico" aria-hidden="true"><use href="#i-display"/></svg>Display adapters</summary>
+              <ul><li><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg>Technical writing</li><li><svg class="ico" aria-hidden="true"><use href="#i-manual"/></svg>Documentation</li><li><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg>Video tutorials</li></ul>
+            </details>
+            <details><summary><svg class="ico" aria-hidden="true"><use href="#i-speaker"/></svg>Sound, video and game controllers</summary>
+              <ul><li><svg class="ico" aria-hidden="true"><use href="#i-speaker"/></svg>Conference talks &amp; keynotes</li><li><svg class="ico" aria-hidden="true"><use href="#i-speaker"/></svg>Webinars &amp; workshops</li><li><svg class="ico" aria-hidden="true"><use href="#i-speaker"/></svg>Podcasts</li></ul>
+            </details>
+            <details><summary><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>Ports (COM &amp; LPT)</summary>
+              <ul><li><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>Arduino Nicla Sense ME</li><li><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>Sony Spresense</li><li><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>NVIDIA Jetson</li><li><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>Nordic nRF9160 &amp; Thingy:91</li><li><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>Silicon Labs xG24</li><li><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>Infineon PSoC 6</li></ul>
+            </details>
+            <details><summary><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg>System devices</summary>
+              <ul><li><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg>C / C++</li><li><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg>JavaScript</li><li><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg>Mbed OS</li><li><svg class="ico" aria-hidden="true"><use href="#i-code"/></svg>Building apps with AI</li></ul>
+            </details>
+          </details>
+        </div>
+      </div>
+      <div class="props-buttons js-only"><button class="btn btn-default" type="button" data-close>OK</button></div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       Recycle Bin
+       ==================================================================== -->
+  <section class="window" id="recycle" data-app="recycle" data-icon="i-recycle" data-task="Recycle Bin" aria-labelledby="t-recycle" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-recycle"/></svg>
+      <h2 class="title-text" id="t-recycle" tabindex="-1">Recycle Bin</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="toolbar js-only">
+      <button class="tool-btn" type="button" data-action="empty-bin"><svg class="ico ico-20" aria-hidden="true"><use href="#i-recycle"/></svg>Empty Recycle Bin</button>
+    </div>
+    <div class="window-body">
+      <div class="pane" style="flex:1">
+        <table class="listview">
+          <caption class="sr-only">Deleted items (jokes)</caption>
+          <thead><tr><th scope="col">Name</th><th scope="col">Original Location</th><th scope="col">Why</th></tr></thead>
+          <tbody>
+            <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg>float32_weights.bin</span></td><td class="muted">C:\Models</td><td class="muted">Quantized to int8. 4× smaller, barely less accurate.</td></tr>
+            <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>cloud_only_inference.exe</span></td><td class="muted">C:\Program Files</td><td class="muted">Moved to the edge</td></tr>
+            <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-notepad"/></svg>printf_debugging.log</span></td><td class="muted">C:\Arm\Mbed</td><td class="muted">Keeps coming back</td></tr>
+            <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-doc"/></svg>56k_modem_drivers.inf</span></td><td class="muted">C:\Windows\System</td><td class="muted">Obsolete (sadly)</td></tr>
+            <tr><td><span class="name"><svg class="ico" aria-hidden="true"><use href="#i-forum"/></svg>guestbook.cgi</span></td><td class="muted">C:\Inetpub\cgi-bin</td><td class="muted">Too much spam</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <footer class="statusbar"><p>5 object(s)</p><p class="grow-0">0 bytes of regret</p></footer>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       Help
+       ==================================================================== -->
+  <section class="window" id="help" data-app="help" data-icon="i-help" data-task="Jenny 98 Help" aria-labelledby="t-help" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-help"/></svg>
+      <h2 class="title-text" id="t-help" tabindex="-1">Jenny 98 Help</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <div class="window-body">
+      <div class="pane" style="flex:1">
+        <div class="pane-inner help-body">
+          <h3>Welcome to Jenny 98</h3>
+          <p>This is the portfolio of Jenny Speelman, Staff Engineer in Developer Relations at Edge Impulse / Qualcomm, dressed up as a late-90s desktop.</p>
+          <h4>Getting around</h4>
+          <ul>
+            <li>Double-click a desktop icon (or tap it on a phone) to open it.</li>
+            <li>Drag windows by their title bar. Resize from the bottom-right corner.</li>
+            <li>Use the <b>Start</b> menu for everything, including Find, Run, and Display Properties.</li>
+            <li>Keyboard: <kbd>Tab</kbd> moves between things, <kbd>Enter</kbd> opens, <kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd> opens Find, <kbd>Esc</kbd> closes menus and dialogs.</li>
+          </ul>
+          <h4>Prefer something calmer?</h4>
+          <p><button class="btn js-only" type="button" data-action="plain-mode">Switch to plain view</button> shows all the same content as a normal scrolling page. Sparkles and sounds can be turned off in <a href="#settings" data-open="settings">Display Properties</a>, and all animation stops if your system asks for reduced motion.</p>
+          <h4>About</h4>
+          <p>Built by Jenny Speelman with plain HTML, CSS, and JavaScript. All icons, artwork, and the startup chime are original. Windows® and MySpace® are trademarks of their respective owners. This site is an affectionate homage and isn't affiliated with either.</p>
+        </div>
+      </div>
+    </div>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       Find: All Files
+       ==================================================================== -->
+  <section class="window" id="find" data-app="find" data-icon="i-find" data-task="Find: All Files" aria-labelledby="t-find" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-find"/></svg>
+      <h2 class="title-text" id="t-find" tabindex="-1">Find: All Files</h2>
+      <div class="title-controls js-only">
+        <button class="t-min" type="button" aria-label="Minimize"></button><button class="t-max" type="button" aria-label="Maximize"></button><button class="t-close" type="button" aria-label="Close"></button>
+      </div>
+    </header>
+    <form class="window-body" id="findForm" role="search">
+      <div class="find-form">
+        <div>
+          <div class="tabs" role="presentation"><span class="tab is-active">Name &amp; Location</span></div>
+          <div class="tab-panel">
+            <label for="findInput">Named:</label>
+            <input id="findInput" data-autofocus type="search" autocomplete="off" placeholder="e.g. anomaly, Spresense, NVIDIA" />
+            <label for="findScope">Look in:</label>
+            <select id="findScope">
+              <option value="all">Jenny's Stuff (everything)</option>
+              <option value="writing">Writing</option>
+              <option value="talks">Talks</option>
+            </select>
+          </div>
+        </div>
+        <div class="find-actions">
+          <button class="btn btn-default" type="submit">Find Now</button>
+          <button class="btn" type="reset">New Search</button>
+          <svg class="ico find-anim" viewBox="0 0 32 32" aria-hidden="true"><use href="#i-find"/></svg>
+        </div>
+      </div>
+      <div class="pane find-results">
+        <table class="listview">
+          <caption class="sr-only">Search results</caption>
+          <thead><tr><th scope="col">Name</th><th scope="col">In Folder</th><th scope="col">Type</th></tr></thead>
+          <tbody id="findResults"></tbody>
+        </table>
+      </div>
+      <footer class="statusbar"><p id="findStatus" aria-live="polite">Type something and press Find Now.</p></footer>
+    </form>
+    <div class="resize-grip js-only" aria-hidden="true"></div>
+  </section>
+
+  <!-- ====================================================================
+       Run…
+       ==================================================================== -->
+  <section class="window" id="run" data-app="run" data-icon="i-run" data-task="Run" aria-labelledby="t-run" hidden>
+    <header class="title-bar">
+      <h2 class="title-text" id="t-run" tabindex="-1">Run</h2>
+      <div class="title-controls js-only"><button class="t-close" type="button" aria-label="Close"></button></div>
+    </header>
+    <form class="window-body" id="runForm">
+      <div class="run-body">
+        <svg class="ico" aria-hidden="true"><use href="#i-run"/></svg>
+        <p>Type the name of a program, folder, or document, and Jenny 98 will open it for you. Try <i>resume</i>, <i>talks</i>, or <i>help</i>.</p>
+      </div>
+      <div class="run-open">
+        <label for="runInput"><u>O</u>pen:</label>
+        <input id="runInput" data-autofocus type="text" autocomplete="off" list="runList" />
+        <datalist id="runList"><option value="resume"></option><option value="talks"></option><option value="writing"></option><option value="book"></option><option value="apps"></option><option value="profile"></option><option value="mail"></option><option value="help"></option></datalist>
+      </div>
+      <div class="props-buttons" style="padding:8px 12px 10px">
+        <button class="btn btn-default" type="submit">OK</button>
+        <button class="btn" type="button" data-close>Cancel</button>
+      </div>
+    </form>
+  </section>
+
+  <!-- ====================================================================
+       Display Properties
+       ==================================================================== -->
+  <section class="window" id="settings" data-app="settings" data-icon="i-display" data-task="Display Properties" aria-labelledby="t-settings" hidden>
+    <header class="title-bar">
+      <svg class="ico" aria-hidden="true"><use href="#i-display"/></svg>
+      <h2 class="title-text" id="t-settings" tabindex="-1">Display Properties</h2>
+      <div class="title-controls js-only"><button class="t-close" type="button" aria-label="Close"></button></div>
+    </header>
+    <form class="window-body props" id="settingsForm">
+      <div class="tabs" role="tablist" aria-label="Display Properties">
+        <button class="tab" role="tab" type="button" id="tab-set-bg" aria-selected="true" aria-controls="panel-set-bg">Background</button>
+        <button class="tab" role="tab" type="button" id="tab-set-fx" aria-selected="false" aria-controls="panel-set-fx" tabindex="-1">Effects</button>
+      </div>
+      <div class="tab-panel" role="tabpanel" id="panel-set-bg" aria-labelledby="tab-set-bg">
+        <div class="monitor-preview" aria-hidden="true"><div class="bezel"><div class="screen" id="previewScreen"></div></div><div class="stand"></div></div>
+        <div class="settings-grid">
+          <div>
+            <span id="lbl-wall">Wallpaper:</span>
+            <ul class="listbox" role="listbox" id="wallList" aria-labelledby="lbl-wall" tabindex="0"></ul>
+          </div>
+          <div>
+            <span id="lbl-pattern">Pattern:</span>
+            <ul class="listbox" role="listbox" id="patternList" aria-labelledby="lbl-pattern" tabindex="0"></ul>
+          </div>
+        </div>
+      </div>
+      <div class="tab-panel" role="tabpanel" id="panel-set-fx" aria-labelledby="tab-set-fx" hidden>
+        <fieldset>
+          <legend>Visual effects</legend>
+          <label class="check"><input type="checkbox" name="sparkles" /><span>Sparkle cursor trail</span></label>
+          <label class="check"><input type="checkbox" name="glitter" /><span>Glitter text &amp; marquees</span></label>
+        </fieldset>
+        <fieldset style="margin-top:10px">
+          <legend>Startup</legend>
+          <label class="check"><input type="checkbox" name="sound" /><span>Play sounds (startup chime, dialogs)</span></label>
+          <label class="check"><input type="checkbox" name="bootEvery" /><span>Show the startup screen on every visit</span></label>
+        </fieldset>
+      </div>
+      <div class="props-buttons">
+        <button class="btn btn-default" type="submit" value="ok">OK</button>
+        <button class="btn" type="button" data-close>Cancel</button>
+        <button class="btn" type="button" data-action="apply-settings">Apply</button>
+      </div>
+    </form>
+  </section>
+
+  </div><!-- /#windows -->
+</main>
+
+<!-- ======================================================================
+     Taskbar & Start menu
+     ====================================================================== -->
+<nav id="taskbar" class="js-only" aria-label="Taskbar">
+  <button class="start-btn" id="startBtn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="startMenu"><svg class="ico" aria-hidden="true"><use href="#i-chip"/></svg>Start</button>
+  <span class="taskbar-sep" aria-hidden="true"></span>
+  <div class="tasks" id="tasks" role="group" aria-label="Open windows"></div>
+  <div class="tray">
+    <button class="tray-volume" id="volumeBtn" type="button" aria-label="Sounds on" aria-pressed="true" title="Sounds on"><svg class="ico" aria-hidden="true"><use href="#i-speaker"/></svg></button>
+    <time class="tray-clock" id="clock"></time>
+  </div>
+</nav>
+
+<div class="start-menu js-only" id="startMenu" hidden>
+  <div class="start-banner" aria-hidden="true"><span>Jenny<b>98</b></span></div>
+  <ul class="menu" role="menu" aria-label="Start">
+    <li role="none">
+      <button class="menu-item has-sub" role="menuitem" type="button" aria-haspopup="menu" aria-expanded="false" id="programsItem"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg><span><u>P</u>rograms</span></button>
+      <ul class="submenu menu menu--small" role="menu" aria-label="Programs" id="programsMenu" hidden>
+        <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="profile"><svg class="ico" aria-hidden="true"><use href="#i-space"/></svg>jennyspeelman.me</button></li>
+        <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="resume"><svg class="ico" aria-hidden="true"><use href="#i-notepad"/></svg>Notepad (resume.txt)</button></li>
+        <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="writing"><svg class="ico" aria-hidden="true"><use href="#i-folder"/></svg>Explorer (Writing)</button></li>
+        <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="talks"><svg class="ico" aria-hidden="true"><use href="#i-media"/></svg>Media Player (Talks)</button></li>
+        <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="book"><svg class="ico" aria-hidden="true"><use href="#i-book"/></svg>AI at the Edge</button></li>
+        <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="apps"><svg class="ico" aria-hidden="true"><use href="#i-globe"/></svg>Web Explorer (AI Apps)</button></li>
+        <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="contact"><svg class="ico" aria-hidden="true"><use href="#i-mail"/></svg>Mail</button></li>
+        <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="computer"><svg class="ico" aria-hidden="true"><use href="#i-computer"/></svg>System Properties</button></li>
+      </ul>
+    </li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="resume"><svg class="ico" aria-hidden="true"><use href="#i-notepad"/></svg><span><u>D</u>ocuments (resume)</span></button></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="settings"><svg class="ico" aria-hidden="true"><use href="#i-display"/></svg><span><u>S</u>ettings</span></button></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="find"><svg class="ico" aria-hidden="true"><use href="#i-find"/></svg><span><u>F</u>ind</span></button></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="help"><svg class="ico" aria-hidden="true"><use href="#i-help"/></svg><span><u>H</u>elp</span></button></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" data-open="run"><svg class="ico" aria-hidden="true"><use href="#i-run"/></svg><span><u>R</u>un…</span></button></li>
+    <li role="separator" class="menu-sep"></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" data-action="plain-mode"><svg class="ico" aria-hidden="true"><use href="#i-plainview"/></svg><span>P<u>l</u>ain view</span></button></li>
+    <li role="none"><button class="menu-item" role="menuitem" type="button" data-action="shutdown"><svg class="ico" aria-hidden="true"><use href="#i-shutdown"/></svg><span>Sh<u>u</u>t Down…</span></button></li>
+  </ul>
+</div>
+
+<div id="shutdown" hidden tabindex="0" role="button" aria-label="Restart Jenny 98">
+  <p>It's now safe to turn off<br>your computer.<small>(click or press any key to restart)</small></p>
+</div>
+
+</body>
+</html>

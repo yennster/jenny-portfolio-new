@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page not found — Jenny Speelman</title>
+  <meta name="description" content="The page you were looking for doesn't exist on Jenny Speelman's portfolio." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <meta name="theme-color" content="#a8155a" />
+
+  <!-- Privacy-friendly analytics by Plausible — cookieless, no banner required. -->
+  <script async src="https://plausible.io/js/pa--HY2cpyqkKJuL5luJgoFc.js"></script>
+  <script>
+    window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+    plausible.init({});
+    // Fire a 404 custom event so broken inbound links show up in Plausible.
+    plausible('404', { props: { path: location.pathname + location.search } });
+  </script>
+
+  <style>
+    html, body { margin: 0; height: 100%; }
+    body {
+      background: #a8155a; color: #fff; display: grid; place-items: center; padding: 24px; box-sizing: border-box;
+      font: 18px/1.5 "Lucida Console", Monaco, "Courier New", monospace; cursor: pointer;
+    }
+    main { max-width: 680px; }
+    h1 { display: table; margin: 0 auto 28px; padding: 0 10px; background: #fff; color: #a8155a; font-size: 18px; font-weight: normal; }
+    p { margin: 0 0 22px; }
+    a { color: #fff; }
+    .blink { animation: blink 1s steps(1) infinite; }
+    @keyframes blink { 50% { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { .blink { animation: none; } }
+    .center { text-align: center; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Jenny 98</h1>
+    <p>A fatal exception 404 has occurred at <span id="path">this address</span>. The page you asked for has been moved to the Recycle Bin, renamed, or never existed.</p>
+    <p>*&nbsp; Press any key to return to the desktop.<br>*&nbsp; Or <a href="/">click here</a> if your keyboard is also in the Recycle Bin.</p>
+    <p class="center">Press any key to continue <span class="blink">_</span></p>
+  </main>
+  <script>
+    document.getElementById('path').textContent = location.pathname;
+    function home() { location.href = '/'; }
+    document.addEventListener('keydown', function (e) { if (!e.metaKey && !e.ctrlKey && !e.altKey) home(); });
+    document.addEventListener('click', function (e) { if (!e.target.closest('a')) home(); });
+  </script>
+</body>
+</html>

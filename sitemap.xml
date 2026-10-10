@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+  <url>
+    <loc>https://jennyspeelman.me/</loc>
+    <lastmod>2026-04-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://jennyspeelman.me/images/jenny-680.jpg</image:loc>
+      <image:caption>Jenny Speelman, Staff Engineer in Developer Relations</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://jennyspeelman.me/images/book-cover-440.jpg</image:loc>
+      <image:caption>AI at the Edge (O'Reilly), co-authored by Jenny Speelman</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://jennyspeelman.me/og-image.png</image:loc>
+      <image:caption>Jenny Speelman portfolio social card</image:caption>
+    </image:image>
+  </url>
+</urlset>

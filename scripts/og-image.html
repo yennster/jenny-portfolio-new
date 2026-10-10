@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=1200" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:wght@400;700&family=Bricolage+Grotesque:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      width: 1200px;
+      height: 630px;
+      overflow: hidden;
+      font-family: 'Atkinson Hyperlegible', system-ui, sans-serif;
+      background: oklch(14% 0.018 200);
+      color: oklch(97% 0.006 193);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .card {
+      width: 1200px;
+      height: 630px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 72px 80px 64px;
+      overflow: hidden;
+    }
+
+    /* Background glow blobs */
+    .blob {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(90px);
+      pointer-events: none;
+    }
+    .blob-1 {
+      width: 480px;
+      height: 480px;
+      background: oklch(48% 0.13 192 / 0.18);
+      top: -120px;
+      right: -80px;
+    }
+    .blob-2 {
+      width: 320px;
+      height: 320px;
+      background: oklch(48% 0.13 192 / 0.10);
+      bottom: -100px;
+      left: 200px;
+    }
+
+    /* Subtle grid lines */
+    .grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(oklch(97% 0.006 193 / 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, oklch(97% 0.006 193 / 0.04) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    .top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      position: relative;
+      z-index: 1;
+    }
+
+    .monogram {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-size: 2.25rem;
+      font-weight: 800;
+      color: oklch(48% 0.13 192);
+      letter-spacing: -0.03em;
+    }
+
+    .badge {
+      font-family: 'Atkinson Hyperlegible', system-ui, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: oklch(48% 0.13 192);
+      border: 1.5px solid oklch(48% 0.13 192 / 0.5);
+      padding: 0.4rem 0.9rem;
+      border-radius: 100px;
+    }
+
+    .main {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-size: 7rem;
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: oklch(97% 0.006 193);
+      margin-bottom: 1.5rem;
+    }
+
+    .role {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: oklch(48% 0.13 192);
+    }
+
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      z-index: 1;
+    }
+
+    .url {
+      font-size: 1rem;
+      font-weight: 700;
+      color: oklch(55% 0.025 200);
+      letter-spacing: 0.04em;
+    }
+
+    /* Accent line */
+    .accent-line {
+      position: absolute;
+      left: 80px;
+      top: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(to bottom, transparent, oklch(48% 0.13 192), transparent);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="grid"></div>
+    <div class="accent-line"></div>
+
+    <div class="top">
+      <div class="monogram">JS</div>
+      <div class="badge">jennyspeelman.me</div>
+    </div>
+
+    <div class="main">
+      <h1>Jenny<br>Speelman</h1>
+      <div class="role">Staff Engineer · Developer Relations</div>
+    </div>
+
+    <div class="bottom">
+      <span class="url">jennyspeelman.me</span>
+    </div>
+  </div>
+</body>
+</html>

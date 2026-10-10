@@ -1,0 +1,15 @@
+[files]
+extend-exclude = [
+    "*.png",
+    "*.jpg",
+    "*.jpeg",
+    "*.webp",
+    "*.svg",
+    "*.ico",
+    "sitemap.xml",
+    "manifest.json",
+    "linkedin.js",
+]
+
+[default.extend-words]
+mis = "mis"
