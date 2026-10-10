@@ -46,7 +46,7 @@
     { id: 'checks', name: 'Checks' },
     { id: 'dither', name: 'Dither' },
   ];
-  const DEFAULTS = { wall: 'rose', pattern: 'none', sparkles: true, glitter: true, sound: true, bootEvery: false };
+  const DEFAULTS = { wall: 'rose', pattern: 'none', sparkles: true, glitter: true, sound: !mqReduce.matches, bootEvery: false };
   let settings = { ...DEFAULTS, ...store.get('j98.settings', {}) };
 
   const wallFor = id => WALLS.find(w => w.id === id) || WALLS[0];
@@ -83,7 +83,7 @@
     if (!audio) {
       audio = new AC();
       const master = audio.createGain();
-      master.gain.value = 0.5;
+      master.gain.value = 0.35;
       const delay = audio.createDelay();
       delay.delayTime.value = 0.23;
       const feedback = audio.createGain();
@@ -94,9 +94,9 @@
       bus.connect(delay);
       delay.connect(master);
       master.connect(audio.destination);
-      // First gesture after the page loads "starts up" the computer with the chime
-      // (during the boot screen, the boot's own ending plays it instead)
-      if (!chimedThisLoad && !html.classList.contains('booting')) chime();
+      // The first gesture of a visit "starts up" the computer with the chime, once per
+      // browser session (during the boot screen, the boot's own ending plays it instead)
+      if (!chimedThisVisit() && !html.classList.contains('booting')) chime();
     }
     if (audio.state === 'suspended') audio.resume();
   }
@@ -111,7 +111,10 @@
   }
 
   let lastChime = -Infinity;
-  let chimedThisLoad = false;
+  let lastDing = -Infinity;
+  function chimedThisVisit() {
+    try { return sessionStorage.getItem('j98.chimed') === '1'; } catch (_) { return false; }
+  }
 
   function tone(freq, at, dur, type = 'sine', peak = 0.1, attack = 0.02) {
     const osc = audio.createOscillator();
@@ -129,7 +132,7 @@
   // The "Jenny 98" startup chime: an original rising A♭maj9 arpeggio over a soft pad.
   function chime() {
     play(() => {
-      chimedThisLoad = true;
+      try { sessionStorage.setItem('j98.chimed', '1'); } catch (_) { /* ignore */ }
       lastChime = performance.now();
       const t = audio.currentTime + 0.05;
       tone(103.83, t, 3.4, 'triangle', 0.06, 0.5);
@@ -145,7 +148,10 @@
   // The one "ding"; `level` only scales its volume (softer for everyday clicks than for dialogs)
   function ding(level = 1) {
     play(() => {
-      if (performance.now() - lastChime < 1800) return; // let the startup chime ring out
+      const now = performance.now();
+      // Let the startup chime ring out, and never stack dings when clicking quickly
+      if (now - lastChime < 1800 || now - lastDing < 600) return;
+      lastDing = now;
       const t = audio.currentTime;
       tone(1318.5, t, 0.45, 'sine', 0.07 * level);
       tone(1975.5, t + 0.05, 0.4, 'sine', 0.035 * level);
@@ -266,7 +272,7 @@
       st.task = makeTask(id, el);
       open.set(id, st);
       if (window.plausible && opts.track !== false) window.plausible('pageview', { u: `${location.origin}${location.pathname}#${id}` });
-      if (!opts.silent) ding(0.45);
+      if (!opts.silent) ding(0.3);
     }
     st.minimized = false;
     el.hidden = false;
@@ -462,7 +468,7 @@
       el.style.top = `${Math.max(8, Math.round((dh - el.offsetHeight) / 2.6))}px`;
       document.addEventListener('keydown', onKey, true);
       row.firstElementChild.focus();
-      ding();
+      ding(0.7);
     });
   }
 
@@ -516,7 +522,6 @@
   function openStart() {
     startMenu.hidden = false;
     startBtn.setAttribute('aria-expanded', 'true');
-    ding(0.3);
     $('.menu-item', startMenu).focus();
   }
   function closeStart(returnFocus = false) {
@@ -645,9 +650,14 @@
         if (answer !== 'OK') return;
         const choice = $('input[name="sd"]:checked', body).value;
         if (choice === 'plain') setPlain(true);
-        else if (choice === 'restart') location.href = `${location.pathname}?boot`;
+        else if (choice === 'restart') restartComputer();
         else shutDown();
       });
+  }
+
+  function restartComputer() {
+    try { sessionStorage.removeItem('j98.chimed'); } catch (_) { /* ignore */ }
+    location.href = `${location.pathname}?boot`;
   }
 
   function shutDown() {
@@ -658,7 +668,7 @@
     $('#taskbar').style.visibility = 'hidden';
     screen.hidden = false;
     screen.focus();
-    const restart = () => { location.href = `${location.pathname}?boot`; };
+    const restart = restartComputer;
     screen.addEventListener('click', restart, { once: true });
     screen.addEventListener('keydown', restart, { once: true });
   }
