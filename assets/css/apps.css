@@ -372,3 +372,14 @@ th[aria-sort="descending"] .sort-ind { visibility: visible; border-bottom-width:
 
 .ms-links th { white-space: nowrap; }
 .ms-links th .ico { width: 16px; height: 16px; display: inline-block; vertical-align: -3px; margin-right: 5px; }
+
+/* --------------------------------------------------------------------------
+   LinkedIn QR window (the full-screen version lives at /connect/)
+   -------------------------------------------------------------------------- */
+.connect { flex: 1; overflow: auto; padding: 12px 16px; text-align: center; }
+.connect-label { color: var(--muted); }
+.connect-name { margin: 2px 0 10px; font: bold 24px/1.15 "Comic Sans MS", "Comic Sans", "Chalkboard SE", cursive; color: #c2185b; }
+.connect-qr { width: min(100%, 250px); margin: 0 auto; padding: 8px; background: #fff; box-shadow: var(--sunken); }
+.connect-qr svg { display: block; width: 100%; height: auto; shape-rendering: crispEdges; }
+.connect-url { margin: 8px 0 12px; font: 12px var(--font-mono); word-break: break-all; }
+.connect-buttons { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }

@@ -164,9 +164,9 @@
   const SIZES = {
     profile: [900, 0], resume: [580, 540], writing: [900, 520], talks: [920, 540], book: [660, 440],
     apps: [720, 560], contact: [540, 480], computer: [460, 480], recycle: [600, 300], help: [520, 470],
-    find: [620, 440], run: [380, 196], settings: [430, 500],
+    find: [620, 440], run: [380, 196], settings: [430, 500], linkedin: [360, 440],
   };
-  const DIALOG_LIKE = new Set(['computer', 'settings', 'run']);
+  const DIALOG_LIKE = new Set(['computer', 'settings', 'run', 'linkedin']);
   const open = new Map(); // id -> { el, task, minimized, opener }
   let zTop = 10;
   let cascade = 0;
@@ -599,6 +599,19 @@
         msgBox({ title: 'Forward to Friend', text: 'Link copied! Paste it to a friend.', icon: 'info' });
       } catch (_) {
         msgBox({ title: 'Forward to Friend', text: `Share this link:\n${data.url}`, icon: 'info' });
+      }
+    },
+    async 'share-linkedin'() {
+      const url = 'https://www.linkedin.com/in/jennyplunkett';
+      if (navigator.share) {
+        try { await navigator.share({ title: 'Jenny Speelman on LinkedIn', url }); } catch (_) { /* cancelled */ }
+        return;
+      }
+      try {
+        await navigator.clipboard.writeText(url);
+        msgBox({ title: 'Share', text: 'LinkedIn link copied!', icon: 'info' });
+      } catch (_) {
+        msgBox({ title: 'Share', text: url, icon: 'info' });
       }
     },
     block() {
@@ -1061,6 +1074,7 @@
     computer: 'computer', sysprops: 'computer', msinfo32: 'computer', 'my computer': 'computer',
     recycle: 'recycle', 'recycle bin': 'recycle', trash: 'recycle',
     help: 'help', winhelp: 'help', find: 'find', search: 'find',
+    linkedin: 'linkedin', qr: 'linkedin', connect: 'linkedin',
     display: 'settings', control: 'settings', settings: 'settings', desk: 'settings', 'desk.cpl': 'settings',
   };
   $('#runForm').addEventListener('submit', e => {
